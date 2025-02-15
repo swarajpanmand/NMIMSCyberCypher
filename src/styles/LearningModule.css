@@ -1,5 +1,6 @@
 .learning-module {
-  background-color: #ffffff;
+  background-color: var(--secondary-bg);
+  color: var(--text-primary);
   padding: 2rem;
   border-radius: 12px;
   max-width: 1200px;
@@ -21,18 +22,18 @@
 }
 
 .difficulty-badge[data-difficulty="easy"] {
-  background-color: #a2b6a1;
-  color: white;
+  background-color: var(--accent-blue);
+  color: var(--text-primary);
 }
 
 .difficulty-badge[data-difficulty="medium"] {
-  background-color: #cfb1bf;
-  color: white;
+  background-color: var(--accent-secondary);
+  color: var(--primary-bg);
 }
 
 .difficulty-badge[data-difficulty="hard"] {
-  background-color: #b8989c;
-  color: white;
+  background-color: var(--accent-primary);
+  color: var(--text-primary);
 }
 
 /* Learning Resources */
@@ -45,15 +46,15 @@
 .tab {
   padding: 0.75rem 1.5rem;
   border: none;
-  background-color: #edd5db;
+  background-color: var(--secondary-bg);
   border-radius: 8px;
   cursor: pointer;
   transition: background-color 0.2s;
+  color: var(--text-primary);
 }
 
 .tab.active {
-  background-color: #a2b6a1;
-  color: white;
+  background-color: var(--accent-primary);
 }
 
 /* Examples */
@@ -139,16 +140,8 @@
   cursor: pointer;
   font-weight: 600;
   transition: transform 0.2s;
-}
-
-.run-tests-btn {
-  background-color: #a2b6a1;
-  color: white;
-}
-
-.submit-btn {
-  background-color: #cfb1bf;
-  color: white;
+  background-color: var(--accent-blue);
+  color: var(--text-primary);
 }
 
 .run-tests-btn:hover, .submit-btn:hover {

@@ -43,14 +43,13 @@
 
 :root {
   /* Color Variables */
-  --primary-bg: #ffffff;
-  --secondary-bg: #edd5db;
-  --accent-green: #a2b6a1;
-  --accent-rose: #c2b0b0;
-  --accent-mauve: #d9cad3;
-  --accent-warm: #a39c9c;
-  --text-primary: #2d2d2d;
-  --text-secondary: #666666;
+  --primary-bg: #0D1B2A;
+  --secondary-bg: #1B2A3A;
+  --accent-primary: #FF6B6B;
+  --accent-secondary: #FFD166;
+  --accent-blue: #4A90E2;
+  --text-primary: #F5F7FA;
+  --text-secondary: #B8C4D0;
   
   /* Spacing */
   --spacing-xs: 0.25rem;
@@ -84,7 +83,7 @@ body {
 
 /* ADHD-Friendly Focus Styles */
 *:focus {
-  outline: 3px solid var(--accent-green);
+  outline: 3px solid var(--accent-primary);
   outline-offset: 2px;
 }
 
@@ -138,12 +137,12 @@ body {
 }
 
 .nav-link:hover {
-  background-color: var(--accent-mauve);
+  background-color: var(--accent-blue);
 }
 
 .nav-link.active {
-  background-color: var(--accent-green);
-  color: white;
+  background-color: var(--accent-primary);
+  color: var(--text-primary);
 }
 
 .nav-icon {
@@ -161,14 +160,14 @@ body {
 .app-header {
   margin-bottom: var(--spacing-xl);
   padding-bottom: var(--spacing-md);
-  border-bottom: 2px solid var(--accent-mauve);
+  border-bottom: 2px solid var(--accent-blue);
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
 .app-header h1 {
-  color: var(--accent-rose);
+  color: var(--accent-secondary);
   font-size: 1.8rem;
 }
 
@@ -183,8 +182,8 @@ body {
   position: fixed;
   bottom: var(--spacing-xl);
   right: var(--spacing-xl);
-  background-color: var(--accent-green);
-  color: white;
+  background-color: var(--accent-primary);
+  color: var(--text-primary);
   padding: var(--spacing-md) var(--spacing-lg);
   border-radius: var(--radius-md);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
@@ -251,8 +250,8 @@ body {
 /* High Contrast Mode */
 @media (prefers-contrast: high) {
   :root {
-    --accent-green: #006400;
-    --accent-rose: #8b0000;
+    --accent-primary: #006400;
+    --accent-secondary: #8b0000;
     --text-primary: #000000;
     --text-secondary: #1a1a1a;
   }
@@ -264,7 +263,7 @@ body {
   left: 0;
   right: 0;
   height: 2px;
-  background-color: var(--accent-green);
+  background-color: var(--accent-primary);
   opacity: 0.5;
   pointer-events: none;
   z-index: 9999;

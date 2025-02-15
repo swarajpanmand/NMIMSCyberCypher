@@ -4,16 +4,16 @@
   height: 80vh;
   max-width: 1000px;
   margin: 0 auto;
-  background-color: #ffffff;
+  background-color: var(--secondary-bg);
   border-radius: 12px;
   overflow: hidden;
 }
 
 /* Settings Panel */
 .chat-settings {
-  background-color: #edd5db;
+  background-color: var(--secondary-bg);
   padding: 1rem;
-  border-bottom: 1px solid #d9cad3;
+  border-bottom: 1px solid var(--accent-blue);
 }
 
 .settings-controls {
@@ -39,14 +39,14 @@
   padding: 0.5rem 1rem;
   border-radius: 20px;
   border: none;
-  background-color: #a2b6a1;
-  color: white;
+  background-color: var(--accent-blue);
+  color: var(--text-primary);
   cursor: pointer;
   transition: background-color 0.2s;
 }
 
 .voice-btn.recording {
-  background-color: #b8989c;
+  background-color: var(--accent-primary);
   animation: pulse 1.5s infinite;
 }
 
@@ -74,13 +74,14 @@
 }
 
 .message.ai .message-content {
-  background-color: #edd5db;
+  background-color: var(--secondary-bg);
   margin-right: auto;
+  color: var(--text-primary);
 }
 
 .message.user .message-content {
-  background-color: #a2b6a1;
-  color: white;
+  background-color: var(--accent-blue);
+  color: var(--text-primary);
 }
 
 .ai-icon {
@@ -131,8 +132,8 @@
 }
 
 .send-btn {
-  background-color: #cfb1bf;
-  color: white;
+  background-color: var(--accent-primary);
+  color: var(--text-primary);
 }
 
 .clear-btn {
