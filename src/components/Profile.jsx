@@ -60,7 +60,7 @@ const Profile = () => {
           </div>
         </div>
       </div>
-
+      {/* <Heatmap /> */}
       {/* Settings Navigation */}
       <div className="settings-nav">
         <button 
