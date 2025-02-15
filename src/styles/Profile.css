@@ -2,6 +2,7 @@
   max-width: 1200px;
   margin: 0 auto;
   padding: 2rem;
+  color: var(--text-primary);
 }
 
 /* Profile Header */
@@ -11,19 +12,25 @@
   gap: 2rem;
   margin-bottom: 2rem;
   padding: 2rem;
-  background-color: #edd5db;
+  background-color: var(--secondary-bg);
   border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
 .profile-avatar {
   position: relative;
+  display: inline-block;
 }
 
-.profile-avatar img {
+.profile-avatar .avatar-icon {
   width: 120px;
   height: 120px;
   border-radius: 50%;
-  border: 4px solid #a2b6a1;
+  border: 4px solid var(--accent-blue);
+  padding: 1rem;
+  background-color: var(--primary-bg);
+  color: var(--accent-blue);
+  box-shadow: 0 4px 8px rgba(74, 144, 226, 0.3);
 }
 
 .change-avatar-btn {
@@ -31,13 +38,19 @@
   bottom: -10px;
   left: 50%;
   transform: translateX(-50%);
-  background-color: #cfb1bf;
-  color: white;
+  background-color: var(--accent-primary);
+  color: var(--text-primary);
   border: none;
   padding: 0.5rem 1rem;
   border-radius: 20px;
   cursor: pointer;
   font-size: 0.8rem;
+  box-shadow: 0 2px 4px rgba(255, 107, 107, 0.3);
+  transition: transform 0.2s;
+}
+
+.change-avatar-btn:hover {
+  transform: translateX(-50%) scale(1.05);
 }
 
 .badge-showcase {
@@ -48,9 +61,18 @@
 
 .badge {
   font-size: 1.5rem;
-  background-color: #d9cad3;
+  background-color: var(--secondary-bg);
   padding: 0.5rem;
   border-radius: 50%;
+  color: var(--accent-secondary);
+  border: 2px solid var(--accent-blue);
+  transition: transform 0.2s;
+}
+
+.badge:hover {
+  transform: scale(1.1);
+  background-color: var(--accent-blue);
+  color: var(--text-primary);
 }
 
 /* Settings Navigation */
@@ -58,6 +80,8 @@
   display: flex;
   gap: 1rem;
   margin-bottom: 2rem;
+  overflow-x: auto;
+  padding-bottom: 0.5rem;
 }
 
 .nav-btn {
@@ -65,21 +89,29 @@
   border: none;
   border-radius: 8px;
   cursor: pointer;
-  background-color: #d9cad3;
-  transition: background-color 0.2s;
+  background-color: var(--secondary-bg);
+  color: var(--text-primary);
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+
+.nav-btn:hover {
+  background-color: var(--accent-blue);
+  transform: translateY(-2px);
 }
 
 .nav-btn.active {
-  background-color: #a2b6a1;
-  color: white;
+  background-color: var(--accent-blue);
+  box-shadow: 0 4px 12px rgba(74, 144, 226, 0.2);
 }
 
 /* Settings Content */
 .settings-section {
-  background-color: white;
+  background-color: var(--secondary-bg);
   padding: 2rem;
   border-radius: 12px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  color: var(--text-primary);
 }
 
 .setting-group {
@@ -89,7 +121,7 @@
 .setting-group label {
   display: block;
   margin-bottom: 0.5rem;
-  color: #666;
+  color: var(--text-secondary);
 }
 
 .setting-group input[type="text"],
@@ -97,9 +129,11 @@
 .setting-group select {
   width: 100%;
   padding: 0.75rem;
-  border: 1px solid #d9cad3;
+  border: 1px solid var(--accent-blue);
   border-radius: 8px;
   font-size: 1rem;
+  background-color: var(--primary-bg);
+  color: var(--text-primary);
 }
 
 /* Badges Grid */
@@ -116,13 +150,13 @@
   padding: 0.75rem;
   border-radius: 8px;
   cursor: pointer;
-  background-color: #edd5db;
+  background-color: var(--secondary-bg);
   transition: background-color 0.2s;
+  color: var(--text-primary);
 }
 
 .badge-item.selected {
-  background-color: #a2b6a1;
-  color: white;
+  background-color: var(--accent-blue);
 }
 
 /* Topics Grid */
@@ -147,39 +181,36 @@
   cursor: pointer;
 }
 
-/* Settings Footer */
-.settings-footer {
-  margin-top: 2rem;
-  text-align: right;
-}
-
+/* Save Button */
 .save-btn {
-  background-color: #cfb1bf;
-  color: white;
+  background-color: var(--accent-primary);
+  color: var(--text-primary);
   border: none;
   padding: 1rem 2rem;
   border-radius: 8px;
   cursor: pointer;
   font-weight: 600;
   transition: transform 0.2s;
+  margin-top: 1rem;
 }
 
 .save-btn:hover {
   transform: scale(1.05);
+  background-color: var(--accent-blue);
 }
 
 @media (max-width: 768px) {
   .profile-header {
     flex-direction: column;
     text-align: center;
+    padding: 1rem;
   }
 
   .settings-nav {
-    overflow-x: auto;
-    padding-bottom: 0.5rem;
+    padding-bottom: 1rem;
   }
 
-  .nav-btn {
-    white-space: nowrap;
+  .settings-section {
+    padding: 1rem;
   }
 } 

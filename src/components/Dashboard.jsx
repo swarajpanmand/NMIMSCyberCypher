@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { FaUser } from 'react-icons/fa'
 
 const Dashboard = () => {
   const [activeMode, setActiveMode] = useState('focus') // focus, checklist
@@ -10,9 +11,13 @@ const Dashboard = () => {
         <aside className="progress-sidebar">
           <div className="profile-summary">
             <div className="avatar-container">
-              <img src="/default-avatar.png" alt="User Avatar" className="avatar" />
-              <div className="level-badge">Level 5</div>
+              <div className="avatar">
+                <FaUser />
+              </div>
+              <div className="level-badge">Lvl 5</div>
             </div>
+            <h2 className="profile-name">John Doe</h2>
+            <p className="profile-title">ADHD Learning Explorer</p>
             <div className="stats">
               <div className="stat-item">
                 <span className="stat-icon">⭐</span>

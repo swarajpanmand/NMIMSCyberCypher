@@ -1,7 +1,15 @@
 import { useState } from 'react'
+import { 
+  FaUser, 
+  FaBell, 
+  FaShieldAlt, 
+  FaPalette, 
+  FaUniversalAccess,
+  FaLink
+} from 'react-icons/fa';
 
 const Settings = () => {
-  const [activeTab, setActiveTab] = useState('account')
+  const [activeTab, setActiveTab] = useState('profile')
   const [settings, setSettings] = useState({
     // Account Settings
     email: 'user@example.com',
@@ -46,48 +54,41 @@ const Settings = () => {
     alert('Password reset email sent!')
   }
 
+  const tabs = [
+    { id: 'profile', name: 'Profile', icon: <FaUser /> },
+    { id: 'notifications', name: 'Notifications', icon: <FaBell /> },
+    { id: 'privacy', name: 'Privacy & Security', icon: <FaShieldAlt /> },
+    { id: 'appearance', name: 'Appearance', icon: <FaPalette /> },
+    { id: 'accessibility', name: 'Accessibility', icon: <FaUniversalAccess /> },
+    { id: 'connections', name: 'Connected Accounts', icon: <FaLink /> }
+  ];
+
   return (
     <div className="settings-page">
-      {/* Settings Navigation */}
       <nav className="settings-nav">
-        <button 
-          className={`nav-tab ${activeTab === 'account' ? 'active' : ''}`}
-          onClick={() => setActiveTab('account')}
-        >
-          Account & Security
-        </button>
-        <button 
-          className={`nav-tab ${activeTab === 'notifications' ? 'active' : ''}`}
-          onClick={() => setActiveTab('notifications')}
-        >
-          Notifications
-        </button>
-        <button 
-          className={`nav-tab ${activeTab === 'display' ? 'active' : ''}`}
-          onClick={() => setActiveTab('display')}
-        >
-          Display
-        </button>
-        <button 
-          className={`nav-tab ${activeTab === 'parental' ? 'active' : ''}`}
-          onClick={() => setActiveTab('parental')}
-        >
-          Parental Controls
-        </button>
+        {tabs.map(tab => (
+          <button
+            key={tab.id}
+            className={`nav-tab ${activeTab === tab.id ? 'active' : ''}`}
+            onClick={() => setActiveTab(tab.id)}
+          >
+            <span className="nav-tab-icon">{tab.icon}</span>
+            {tab.name}
+          </button>
+        ))}
       </nav>
 
-      {/* Settings Content */}
       <div className="settings-content">
-        {activeTab === 'account' && (
+        {activeTab === 'profile' && (
           <div className="settings-section">
-            <h2>Account & Security</h2>
+            <h2>Profile Settings</h2>
             
             <div className="setting-group">
               <h3>Email Address</h3>
               <input 
                 type="email" 
                 value={settings.email}
-                onChange={(e) => handleSettingChange('account', 'email', e.target.value)}
+                onChange={(e) => handleSettingChange('profile', 'email', e.target.value)}
               />
               <button className="verify-btn">Verify Email</button>
             </div>
@@ -108,7 +109,7 @@ const Settings = () => {
                 <input 
                   type="checkbox"
                   checked={settings.twoFactorEnabled}
-                  onChange={(e) => handleSettingChange('account', 'twoFactorEnabled', e.target.checked)}
+                  onChange={(e) => handleSettingChange('profile', 'twoFactorEnabled', e.target.checked)}
                 />
                 <span className="toggle-slider"></span>
               </label>
@@ -122,7 +123,7 @@ const Settings = () => {
                   <button 
                     className={settings.linkedAccounts.google ? 'unlink-btn' : 'link-btn'}
                     onClick={() => handleSettingChange(
-                      'account', 
+                      'profile', 
                       'linkedAccounts', 
                       {...settings.linkedAccounts, google: !settings.linkedAccounts.google}
                     )}
@@ -135,7 +136,7 @@ const Settings = () => {
                   <button 
                     className={settings.linkedAccounts.github ? 'unlink-btn' : 'link-btn'}
                     onClick={() => handleSettingChange(
-                      'account', 
+                      'profile', 
                       'linkedAccounts', 
                       {...settings.linkedAccounts, github: !settings.linkedAccounts.github}
                     )}
@@ -217,9 +218,59 @@ const Settings = () => {
           </div>
         )}
 
-        {activeTab === 'display' && (
+        {activeTab === 'privacy' && (
           <div className="settings-section">
-            <h2>Display Settings</h2>
+            <h2>Privacy & Security</h2>
+            
+            <div className="setting-group">
+              <h3>Two-Factor Authentication</h3>
+              <label className="toggle-switch">
+                <input 
+                  type="checkbox"
+                  checked={settings.twoFactorEnabled}
+                  onChange={(e) => handleSettingChange('privacy', 'twoFactorEnabled', e.target.checked)}
+                />
+                <span className="toggle-slider"></span>
+              </label>
+            </div>
+
+            <div className="setting-group">
+              <h3>Linked Accounts</h3>
+              <div className="linked-accounts">
+                <div className="account-link">
+                  <span>Google</span>
+                  <button 
+                    className={settings.linkedAccounts.google ? 'unlink-btn' : 'link-btn'}
+                    onClick={() => handleSettingChange(
+                      'privacy', 
+                      'linkedAccounts', 
+                      {...settings.linkedAccounts, google: !settings.linkedAccounts.google}
+                    )}
+                  >
+                    {settings.linkedAccounts.google ? 'Unlink' : 'Link'}
+                  </button>
+                </div>
+                <div className="account-link">
+                  <span>GitHub</span>
+                  <button 
+                    className={settings.linkedAccounts.github ? 'unlink-btn' : 'link-btn'}
+                    onClick={() => handleSettingChange(
+                      'privacy', 
+                      'linkedAccounts', 
+                      {...settings.linkedAccounts, github: !settings.linkedAccounts.github}
+                    )}
+                  >
+                    {settings.linkedAccounts.github ? 'Unlink' : 'Link'}
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {activeTab === 'appearance' && (
+          <div className="settings-section">
+            <h2>Appearance</h2>
             
             <div className="setting-group">
               <h3>Theme</h3>
@@ -227,7 +278,7 @@ const Settings = () => {
                 <input 
                   type="checkbox"
                   checked={settings.darkMode}
-                  onChange={(e) => handleSettingChange('display', 'darkMode', e.target.checked)}
+                  onChange={(e) => handleSettingChange('appearance', 'darkMode', e.target.checked)}
                 />
                 <span className="toggle-slider"></span>
                 Dark Mode
@@ -241,7 +292,7 @@ const Settings = () => {
                   <input 
                     type="checkbox"
                     checked={settings.dyslexicFont}
-                    onChange={(e) => handleSettingChange('display', 'dyslexicFont', e.target.checked)}
+                    onChange={(e) => handleSettingChange('appearance', 'dyslexicFont', e.target.checked)}
                   />
                   Dyslexia-Friendly Font
                 </label>
@@ -249,7 +300,7 @@ const Settings = () => {
                   <input 
                     type="checkbox"
                     checked={settings.highContrast}
-                    onChange={(e) => handleSettingChange('display', 'highContrast', e.target.checked)}
+                    onChange={(e) => handleSettingChange('appearance', 'highContrast', e.target.checked)}
                   />
                   High Contrast
                 </label>
@@ -257,7 +308,7 @@ const Settings = () => {
                   <input 
                     type="checkbox"
                     checked={settings.reducedMotion}
-                    onChange={(e) => handleSettingChange('display', 'reducedMotion', e.target.checked)}
+                    onChange={(e) => handleSettingChange('appearance', 'reducedMotion', e.target.checked)}
                   />
                   Reduced Motion
                 </label>
@@ -268,7 +319,7 @@ const Settings = () => {
               <h3>Font Size</h3>
               <select 
                 value={settings.fontSize}
-                onChange={(e) => handleSettingChange('display', 'fontSize', e.target.value)}
+                onChange={(e) => handleSettingChange('appearance', 'fontSize', e.target.value)}
               >
                 <option value="small">Small</option>
                 <option value="medium">Medium</option>
@@ -279,63 +330,87 @@ const Settings = () => {
           </div>
         )}
 
-        {activeTab === 'parental' && (
+        {activeTab === 'accessibility' && (
           <div className="settings-section">
-            <h2>Parental Controls</h2>
+            <h2>Accessibility</h2>
             
             <div className="setting-group">
-              <h3>Enable Parental Controls</h3>
+              <h3>Dyslexia-Friendly Font</h3>
               <label className="toggle-switch">
                 <input 
                   type="checkbox"
-                  checked={settings.parentalControlEnabled}
-                  onChange={(e) => handleSettingChange('parental', 'parentalControlEnabled', e.target.checked)}
+                  checked={settings.dyslexicFont}
+                  onChange={(e) => handleSettingChange('accessibility', 'dyslexicFont', e.target.checked)}
                 />
                 <span className="toggle-slider"></span>
               </label>
             </div>
 
-            {settings.parentalControlEnabled && (
-              <>
-                <div className="setting-group">
-                  <h3>Daily Study Time Limit (minutes)</h3>
-                  <input 
-                    type="number"
-                    min="30"
-                    max="480"
-                    value={settings.studyTimeLimit}
-                    onChange={(e) => handleSettingChange('parental', 'studyTimeLimit', parseInt(e.target.value))}
-                  />
-                </div>
+            <div className="setting-group">
+              <h3>High Contrast</h3>
+              <label className="toggle-switch">
+                <input 
+                  type="checkbox"
+                  checked={settings.highContrast}
+                  onChange={(e) => handleSettingChange('accessibility', 'highContrast', e.target.checked)}
+                />
+                <span className="toggle-slider"></span>
+              </label>
+            </div>
 
-                <div className="setting-group">
-                  <h3>Content Filter Level</h3>
-                  <select 
-                    value={settings.contentFilter}
-                    onChange={(e) => handleSettingChange('parental', 'contentFilter', e.target.value)}
+            <div className="setting-group">
+              <h3>Reduced Motion</h3>
+              <label className="toggle-switch">
+                <input 
+                  type="checkbox"
+                  checked={settings.reducedMotion}
+                  onChange={(e) => handleSettingChange('accessibility', 'reducedMotion', e.target.checked)}
+                />
+                <span className="toggle-slider"></span>
+              </label>
+            </div>
+          </div>
+        )}
+
+        {activeTab === 'connections' && (
+          <div className="settings-section">
+            <h2>Connected Accounts</h2>
+            
+            <div className="setting-group">
+              <h3>Linked Accounts</h3>
+              <div className="linked-accounts">
+                <div className="account-link">
+                  <span>Google</span>
+                  <button 
+                    className={settings.linkedAccounts.google ? 'unlink-btn' : 'link-btn'}
+                    onClick={() => handleSettingChange(
+                      'connections', 
+                      'linkedAccounts', 
+                      {...settings.linkedAccounts, google: !settings.linkedAccounts.google}
+                    )}
                   >
-                    <option value="strict">Strict</option>
-                    <option value="moderate">Moderate</option>
-                    <option value="light">Light</option>
-                  </select>
+                    {settings.linkedAccounts.google ? 'Unlink' : 'Link'}
+                  </button>
                 </div>
-
-                <div className="setting-group">
-                  <h3>Parent/Guardian Email</h3>
-                  <input 
-                    type="email"
-                    value={settings.parentEmail}
-                    onChange={(e) => handleSettingChange('parental', 'parentEmail', e.target.value)}
-                    placeholder="parent@example.com"
-                  />
+                <div className="account-link">
+                  <span>GitHub</span>
+                  <button 
+                    className={settings.linkedAccounts.github ? 'unlink-btn' : 'link-btn'}
+                    onClick={() => handleSettingChange(
+                      'connections', 
+                      'linkedAccounts', 
+                      {...settings.linkedAccounts, github: !settings.linkedAccounts.github}
+                    )}
+                  >
+                    {settings.linkedAccounts.github ? 'Unlink' : 'Link'}
+                  </button>
                 </div>
-              </>
-            )}
+              </div>
+            </div>
           </div>
         )}
       </div>
 
-      {/* Save Button */}
       <div className="settings-footer">
         <button className="save-settings-btn">Save Changes</button>
       </div>

@@ -21,8 +21,8 @@
 }
 
 .new-post-btn {
-  background-color: #a2b6a1;
-  color: white;
+  background-color: var(--accent-primary);
+  color: var(--text-primary);
   padding: 0.75rem 1.5rem;
   border: none;
   border-radius: 20px;
@@ -40,7 +40,8 @@
 }
 
 .category-btn {
-  background-color: #edd5db;
+  background-color: var(--secondary-bg);
+  color: var(--text-primary);
   border: none;
   padding: 0.75rem 1.5rem;
   border-radius: 20px;
@@ -52,8 +53,7 @@
 }
 
 .category-btn.active {
-  background-color: #cfb1bf;
-  color: white;
+  background-color: var(--accent-blue);
 }
 
 .category-icon {
@@ -68,7 +68,8 @@
 }
 
 .discussion-card {
-  background-color: white;
+  background-color: var(--secondary-bg);
+  color: var(--text-primary);
   border-radius: 12px;
   padding: 1.5rem;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -83,17 +84,18 @@
 
 .discussion-header h3 {
   margin: 0;
-  color: #2d2d2d;
+  color: var(--text-primary);
 }
 
 .category-tag {
-  background-color: #edd5db;
+  background-color: var(--accent-blue);
+  color: var(--text-primary);
   padding: 0.5rem;
   border-radius: 50%;
 }
 
 .discussion-content {
-  color: #4a4a4a;
+  color: var(--text-secondary);
   margin-bottom: 1rem;
 }
 
@@ -114,7 +116,7 @@
   background: none;
   border: none;
   cursor: pointer;
-  color: #666;
+  color: var(--text-secondary);
 }
 
 /* New Post Modal */
@@ -132,7 +134,8 @@
 }
 
 .modal-content {
-  background-color: white;
+  background-color: var(--secondary-bg);
+  color: var(--text-primary);
   padding: 2rem;
   border-radius: 12px;
   width: 90%;
@@ -148,8 +151,10 @@
 .modal-content input,
 .modal-content textarea,
 .modal-content select {
+  background-color: var(--primary-bg);
+  border: 1px solid var(--accent-blue);
+  color: var(--text-primary);
   padding: 0.75rem;
-  border: 1px solid #d9cad3;
   border-radius: 8px;
   font-size: 1rem;
 }
@@ -173,11 +178,11 @@
 }
 
 .form-buttons button[type="submit"] {
-  background-color: #a2b6a1;
-  color: white;
+  background-color: var(--accent-primary);
+  color: var(--text-primary);
 }
 
 .form-buttons button[type="button"] {
-  background-color: #a39c9c;
-  color: white;
+  background-color: var(--secondary-bg);
+  color: var(--text-primary);
 } 
