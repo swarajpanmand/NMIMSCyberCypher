@@ -5,7 +5,8 @@ import {
   FaShieldAlt, 
   FaPalette, 
   FaUniversalAccess,
-  FaLink
+  FaLink,
+  FaUserCircle
 } from 'react-icons/fa';
 
 const Settings = () => {
@@ -82,6 +83,11 @@ const Settings = () => {
         {activeTab === 'profile' && (
           <div className="settings-section">
             <h2>Profile Settings</h2>
+            
+            <div className="setting-group profile-avatar">
+              <FaUserCircle className="avatar-icon" />
+              <button className="change-avatar-btn">Change Avatar</button>
+            </div>
             
             <div className="setting-group">
               <h3>Email Address</h3>

@@ -17,6 +17,8 @@ import './styles/Profile.css'
 import './styles/Settings.css'
 import Navbar from './components/Navbar'
 import './styles/Navbar.css'
+import { BrowserRouter as Router } from 'react-router-dom'
+import MiniTimer from './components/MiniTimer'
 
 function App() {
   const [currentPage, setCurrentPage] = useState('dashboard')
@@ -56,34 +58,43 @@ function App() {
   }
 
   return (
-    <div className="app-container">
-      <header className="app-header">
-        <div className="header-content">
-          <h1>CodeQuest</h1>
-          <Navbar 
-            currentPage={currentPage} 
-            setCurrentPage={setCurrentPage} 
-            currentStreak={currentStreak}
-          />
-          <div className="streak-counter">
-            <FaFire className="streak-icon" />
-            <span>{currentStreak}</span>
-          </div>
-        </div>
-      </header>
-      
-      <main className="main-content">
-        <div className="page-content">
-          {renderPage()}
-        </div>
+    <Router>
+      <div className="app">
+        <Navbar />
+        <main>
+          <div className="app-container">
+            <header className="app-header">
+              <div className="header-content">
+                <h1>CodeQuest</h1>
+                <Navbar 
+                  currentPage={currentPage} 
+                  setCurrentPage={setCurrentPage} 
+                  currentStreak={currentStreak}
+                />
+                <div className="streak-counter">
+                  <FaFire className="streak-icon" />
+                  <span>{currentStreak}</span>
+                </div>
+              </div>
+            </header>
+            
+            <div className="main-content">
+            {/* <MiniTimer /> */}
+              <div className="page-content">
+                {renderPage()}
+              </div>
 
-        {showBreakReminder && (
-          <div className="break-reminder">
-            Time for a quick break! Stand up, stretch, or grab some water. 🌿
+              {showBreakReminder && (
+                <div className="break-reminder">
+                  Time for a quick break! Stand up, stretch, or grab some water. 🌿
+                </div>
+              )}
+            </div>
           </div>
-        )}
-      </main>
-    </div>
+        </main>
+        
+      </div>
+    </Router>
   )
 }
 

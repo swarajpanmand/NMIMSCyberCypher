@@ -1,256 +1,194 @@
 import { useState } from 'react'
-import { FaUser, FaCrown, FaStar, FaTrophy } from 'react-icons/fa';
+import { FaUser, FaCog, FaBrain, FaClock, FaTrophy, FaChartLine, FaCalendarAlt, FaLightbulb, FaStar, FaMedal, FaHeart } from 'react-icons/fa';
+import { GiBrain, GiStairsGoal } from 'react-icons/gi';
 
 const Profile = () => {
-  const [activeSection, setActiveSection] = useState('profile')
-  const [settings, setSettings] = useState({
-    // Profile Settings
-    username: 'CodeQuester',
-    avatar: '/default-avatar.png',
-    selectedBadges: ['coding-streak', 'problem-solver'],
-    theme: 'light',
-    
-    // Accessibility Settings
-    fontSize: 'medium',
-    contrast: 'normal',
-    animationSpeed: 'normal',
-    fontFamily: 'default',
-    
-    // Learning Preferences
-    difficulty: 'medium',
-    dailyGoal: 2,
-    preferredTopics: ['algorithms', 'web-development'],
-    studyReminders: true
-  })
+  const [activeTab, setActiveTab] = useState('overview');
 
-  const badges = [
-    { id: 'coding-streak', name: '7-Day Streak', icon: '🔥' },
-    { id: 'problem-solver', name: 'Problem Solver', icon: '🎯' },
-    { id: 'team-player', name: 'Team Player', icon: '👥' },
-    { id: 'quick-learner', name: 'Quick Learner', icon: '⚡' },
-    { id: 'bug-hunter', name: 'Bug Hunter', icon: '🐛' },
-    { id: 'helper', name: 'Helper', icon: '🤝' }
-  ]
+  const userStats = {
+    focusTime: "28h 45m",
+    completedTasks: 156,
+    streakDays: 12,
+    achievements: 8
+  };
 
-  const handleSettingChange = (category, setting, value) => {
-    setSettings(prev => ({
-      ...prev,
-      [setting]: value
-    }))
-  }
+  const achievements = [
+    {
+      id: 1,
+      title: "Focus Master",
+      description: "Completed 5 focus sessions in one day",
+      icon: <FaBrain />,
+      progress: 100,
+      earned: true
+    },
+    {
+      id: 2,
+      title: "Consistency King",
+      description: "Maintained a 7-day streak",
+      icon: <FaChartLine />,
+      progress: 100,
+      earned: true
+    },
+    {
+      id: 3,
+      title: "Task Champion",
+      description: "Completed 50 tasks",
+      icon: <FaTrophy />,
+      progress: 75,
+      earned: false
+    }
+  ];
+
+  const learningPreferences = {
+    visualLearning: 85,
+    audioLearning: 60,
+    kinestheticLearning: 75,
+    readingWriting: 45
+  };
 
   return (
-    <div className="profile-page">
+    <div className="profile-container">
       {/* Profile Header */}
       <div className="profile-header">
         <div className="profile-avatar">
-          <FaUser className="avatar-icon" />
-          <button className="change-avatar-btn">Change Avatar</button>
+          <img src="/avatar-placeholder.png" alt="Profile" />
+          <div className="profile-status">
+            <span className="status-dot"></span>
+            Level 8
+          </div>
         </div>
         <div className="profile-info">
-          <h2>{settings.username}</h2>
-          <div className="badge-showcase">
-            <FaCrown className="badge" title="Premium Member" />
-            <FaStar className="badge" title="Top Contributor" />
-            <FaTrophy className="badge" title="Achievement Master" />
+          <h2>Sarah Johnson</h2>
+          <p className="profile-bio">Embracing ADHD and turning challenges into strengths 💪</p>
+          <div className="profile-stats">
+            <div className="stat-item">
+              <FaClock className="stat-icon" />
+              <div className="stat-details">
+                <span className="stat-value">{userStats.focusTime}</span>
+                <span className="stat-label">Focus Time</span>
+              </div>
+            </div>
+            <div className="stat-item">
+              <FaChartLine className="stat-icon" />
+              <div className="stat-details">
+                <span className="stat-value">{userStats.completedTasks}</span>
+                <span className="stat-label">Tasks Done</span>
+              </div>
+            </div>
+            <div className="stat-item">
+              <FaCalendarAlt className="stat-icon" />
+              <div className="stat-details">
+                <span className="stat-value">{userStats.streakDays}</span>
+                <span className="stat-label">Day Streak</span>
+              </div>
+            </div>
           </div>
         </div>
       </div>
 
-      {/* Settings Navigation */}
-      <div className="settings-nav">
+      {/* Profile Navigation */}
+      <div className="profile-nav">
         <button 
-          className={`nav-btn ${activeSection === 'profile' ? 'active' : ''}`}
-          onClick={() => setActiveSection('profile')}
+          className={`nav-btn ${activeTab === 'overview' ? 'active' : ''}`}
+          onClick={() => setActiveTab('overview')}
         >
-          Profile
+          <FaUser /> Overview
         </button>
         <button 
-          className={`nav-btn ${activeSection === 'accessibility' ? 'active' : ''}`}
-          onClick={() => setActiveSection('accessibility')}
+          className={`nav-btn ${activeTab === 'achievements' ? 'active' : ''}`}
+          onClick={() => setActiveTab('achievements')}
         >
-          Accessibility
+          <FaTrophy /> Achievements
         </button>
         <button 
-          className={`nav-btn ${activeSection === 'learning' ? 'active' : ''}`}
-          onClick={() => setActiveSection('learning')}
+          className={`nav-btn ${activeTab === 'preferences' ? 'active' : ''}`}
+          onClick={() => setActiveTab('preferences')}
         >
-          Learning
+          <FaCog /> Preferences
         </button>
       </div>
 
-      {/* Settings Content */}
-      <div className="settings-content">
-        {activeSection === 'profile' && (
-          <div className="settings-section">
-            <h3>Profile Customization</h3>
-            
-            <div className="setting-group">
-              <label>Username</label>
-              <input 
-                type="text"
-                value={settings.username}
-                onChange={(e) => handleSettingChange('profile', 'username', e.target.value)}
-              />
-            </div>
-
-            <div className="setting-group">
-              <label>Theme</label>
-              <select 
-                value={settings.theme}
-                onChange={(e) => handleSettingChange('profile', 'theme', e.target.value)}
-              >
-                <option value="light">Light</option>
-                <option value="dark">Dark</option>
-                <option value="high-contrast">High Contrast</option>
-              </select>
-            </div>
-
-            <div className="setting-group">
-              <label>Available Badges</label>
-              <div className="badges-grid">
-                {badges.map(badge => (
-                  <div 
-                    key={badge.id}
-                    className={`badge-item ${settings.selectedBadges.includes(badge.id) ? 'selected' : ''}`}
-                    onClick={() => {
-                      const newSelected = settings.selectedBadges.includes(badge.id)
-                        ? settings.selectedBadges.filter(id => id !== badge.id)
-                        : [...settings.selectedBadges, badge.id]
-                      handleSettingChange('profile', 'selectedBadges', newSelected)
-                    }}
-                  >
-                    <span className="badge-icon">{badge.icon}</span>
-                    <span className="badge-name">{badge.name}</span>
+      {/* Profile Content */}
+      <div className="profile-content">
+        {activeTab === 'overview' && (
+          <div className="profile-overview">
+            <div className="overview-section">
+              <h3><FaLightbulb /> Learning Style</h3>
+              <div className="learning-styles">
+                {Object.entries(learningPreferences).map(([style, value]) => (
+                  <div key={style} className="learning-style-item">
+                    <div className="style-header">
+                      <span className="style-name">
+                        {style.replace(/([A-Z])/g, ' $1').trim()}
+                      </span>
+                      <span className="style-value">{value}%</span>
+                    </div>
+                    <div className="progress-bar">
+                      <div 
+                        className="progress-fill"
+                        style={{ width: `${value}%` }}
+                      ></div>
+                    </div>
                   </div>
                 ))}
               </div>
             </div>
-          </div>
-        )}
 
-        {activeSection === 'accessibility' && (
-          <div className="settings-section">
-            <h3>Accessibility Preferences</h3>
-            
-            <div className="setting-group">
-              <label>Font Size</label>
-              <select 
-                value={settings.fontSize}
-                onChange={(e) => handleSettingChange('accessibility', 'fontSize', e.target.value)}
-              >
-                <option value="small">Small</option>
-                <option value="medium">Medium</option>
-                <option value="large">Large</option>
-                <option value="x-large">Extra Large</option>
-              </select>
-            </div>
-
-            <div className="setting-group">
-              <label>Contrast</label>
-              <select 
-                value={settings.contrast}
-                onChange={(e) => handleSettingChange('accessibility', 'contrast', e.target.value)}
-              >
-                <option value="normal">Normal</option>
-                <option value="high">High</option>
-                <option value="very-high">Very High</option>
-              </select>
-            </div>
-
-            <div className="setting-group">
-              <label>Animation Speed</label>
-              <select 
-                value={settings.animationSpeed}
-                onChange={(e) => handleSettingChange('accessibility', 'animationSpeed', e.target.value)}
-              >
-                <option value="none">No Animations</option>
-                <option value="slow">Slow</option>
-                <option value="normal">Normal</option>
-              </select>
-            </div>
-
-            <div className="setting-group">
-              <label>Font Family</label>
-              <select 
-                value={settings.fontFamily}
-                onChange={(e) => handleSettingChange('accessibility', 'fontFamily', e.target.value)}
-              >
-                <option value="default">Default</option>
-                <option value="dyslexic">OpenDyslexic</option>
-                <option value="sans-serif">Sans Serif</option>
-                <option value="monospace">Monospace</option>
-              </select>
-            </div>
-          </div>
-        )}
-
-        {activeSection === 'learning' && (
-          <div className="settings-section">
-            <h3>Learning Preferences</h3>
-            
-            <div className="setting-group">
-              <label>Content Difficulty</label>
-              <select 
-                value={settings.difficulty}
-                onChange={(e) => handleSettingChange('learning', 'difficulty', e.target.value)}
-              >
-                <option value="beginner">Beginner</option>
-                <option value="medium">Intermediate</option>
-                <option value="advanced">Advanced</option>
-              </select>
-            </div>
-
-            <div className="setting-group">
-              <label>Daily Learning Goal (hours)</label>
-              <input 
-                type="number"
-                min="0.5"
-                max="8"
-                step="0.5"
-                value={settings.dailyGoal}
-                onChange={(e) => handleSettingChange('learning', 'dailyGoal', parseFloat(e.target.value))}
-              />
-            </div>
-
-            <div className="setting-group">
-              <label>Preferred Topics</label>
-              <div className="topics-grid">
-                {['algorithms', 'web-development', 'databases', 'machine-learning'].map(topic => (
-                  <label key={topic} className="topic-checkbox">
-                    <input 
-                      type="checkbox"
-                      checked={settings.preferredTopics.includes(topic)}
-                      onChange={(e) => {
-                        const newTopics = e.target.checked
-                          ? [...settings.preferredTopics, topic]
-                          : settings.preferredTopics.filter(t => t !== topic)
-                        handleSettingChange('learning', 'preferredTopics', newTopics)
-                      }}
-                    />
-                    {topic.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ')}
-                  </label>
-                ))}
+            <div className="overview-section">
+              <h3><GiStairsGoal /> Current Goals</h3>
+              <div className="goals-grid">
+                <div className="goal-card">
+                  <div className="goal-icon"><FaClock /></div>
+                  <h4>Daily Focus Time</h4>
+                  <p>2 hours / 3 hours</p>
+                  <div className="goal-progress">
+                    <div className="progress-bar">
+                      <div 
+                        className="progress-fill"
+                        style={{ width: '66%' }}
+                      ></div>
+                    </div>
+                  </div>
+                </div>
+                {/* Add more goal cards */}
               </div>
             </div>
-
-            <div className="setting-group">
-              <label className="switch-label">
-                <input 
-                  type="checkbox"
-                  checked={settings.studyReminders}
-                  onChange={(e) => handleSettingChange('learning', 'studyReminders', e.target.checked)}
-                />
-                Enable Study Reminders
-              </label>
-            </div>
           </div>
         )}
-      </div>
 
-      {/* Save Button */}
-      <div className="settings-footer">
-        <button className="save-btn">Save Changes</button>
+        {activeTab === 'achievements' && (
+          <div className="achievements-grid">
+            {achievements.map(achievement => (
+              <div 
+                key={achievement.id} 
+                className={`achievement-card ${achievement.earned ? 'earned' : ''}`}
+              >
+                <div className="achievement-icon">
+                  {achievement.icon}
+                </div>
+                <div className="achievement-info">
+                  <h4>{achievement.title}</h4>
+                  <p>{achievement.description}</p>
+                  <div className="achievement-progress">
+                    <div className="progress-bar">
+                      <div 
+                        className="progress-fill"
+                        style={{ width: `${achievement.progress}%` }}
+                      ></div>
+                    </div>
+                    <span>{achievement.progress}%</span>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
+
+        {activeTab === 'preferences' && (
+          <div className="preferences-section">
+            {/* Add preferences content */}
+          </div>
+        )}
       </div>
     </div>
   )

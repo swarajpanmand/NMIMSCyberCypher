@@ -9,7 +9,7 @@
   grid-template-columns: 250px 1fr 300px;
   gap: 2rem;
   max-width: 1400px;
-  margin: 0 auto;
+  /* margin: 0 auto; */
   height: 100%;
 }
 
@@ -128,6 +128,28 @@
   transition: all 0.3s ease;
   font-weight: 600;
   letter-spacing: 0.5px;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.mode-btn::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: var(--accent-primary);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: width 0.6s ease, height 0.6s ease;
+  z-index: -1;
+}
+
+.mode-btn:hover::before {
+  width: 300%;
+  height: 300%;
 }
 
 .mode-btn:hover {
@@ -188,7 +210,7 @@
 .notes-sidebar {
   display: flex;
   flex-direction: column;
-  height: 100%;
+  height: 50%;
 }
 
 .sticky-notes, .reminders {
@@ -257,10 +279,15 @@
 }
 
 .achievement-icon {
-  font-size: 1.5rem;
-  color: var(--accent-secondary);
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--secondary-bg);
+  border-radius: 8px;
+  font-size: 1rem;
   transition: all 0.3s ease;
-  cursor: pointer;
 }
 
 .achievement-icon:hover {
@@ -565,16 +592,13 @@
 }
 
 .achievement-item {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  min-width: 120px;
-  padding: 1rem;
-  background: var(--secondary-bg);
-  border-radius: 10px;
-  transition: all 0.3s ease;
-  position: relative;
-  border: 2px solid transparent;
+  background: var(--primary-bg);
+  border-radius: 12px;
+  padding: 0.8rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+  width: 100%;
+  min-width: 140px;
 }
 
 .achievement-item.completed {
@@ -636,11 +660,566 @@
 
   .achievement-item {
     min-width: 100px;
-    padding: 0.8rem;
+    padding: 0.7rem;
   }
 
   .achievement-icon {
-    font-size: 1.5rem;
+    width: 28px;
+    height: 28px;
+    font-size: 0.9rem;
   }
-} 
+}
+
+/* Zig-zag Roadmap Styles */
+.roadmap-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  position: relative;
+  padding: 1rem;
+}
+
+.video-node {
+  position: relative;
+  width: 90px;
+  height: 90px;
+  margin: 0 auto;
+}
+
+/* Zig-zag path connections */
+.video-node:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  width: 2px;
+  height: calc(100% + 2rem);
+  background: linear-gradient(180deg,
+    var(--accent-blue) 40%,
+    transparent 100%
+  );
+  box-shadow: 0 0 8px rgba(74, 144, 226, 0.5);
+  z-index: 1;
+}
+
+/* Horizontal connectors */
+.video-node:not(:last-child)::before {
+  content: '';
+  position: absolute;
+  height: 2px;
+  background: linear-gradient(90deg,
+    var(--accent-blue) 40%,
+    transparent 100%
+  );
+  box-shadow: 0 0 8px rgba(74, 144, 226, 0.5);
+  z-index: 1;
+}
+
+/* Even numbered nodes */
+.video-node:nth-child(3n+1):not(:last-child)::after {
+  right: -1rem;
+  top: 50%;
+  transform: translateX(100%);
+}
+
+.video-node:nth-child(3n+1):not(:last-child)::before {
+  right: -1rem;
+  top: 50%;
+  width: calc(200% + 2rem);
+  transform-origin: left;
+}
+
+/* Odd numbered nodes */
+.video-node:nth-child(3n+2):not(:last-child)::after {
+  left: -1rem;
+  top: 50%;
+  transform: translateX(-100%);
+}
+
+.video-node:nth-child(3n+2):not(:last-child)::before {
+  left: -1rem;
+  top: 50%;
+  width: calc(200% + 2rem);
+  transform-origin: right;
+}
+
+/* Third column nodes */
+.video-node:nth-child(3n+3):not(:last-child)::after {
+  left: 50%;
+  top: 100%;
+  transform: translateX(-50%);
+  height: 2rem;
+}
+
+/* Animation for the path */
+.video-node::after,
+.video-node::before {
+  background-size: 200% 200%;
+  animation: glowPath 2s infinite;
+}
+
+@keyframes glowPath {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .roadmap-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+
+  .video-node:nth-child(2n+1):not(:last-child)::after {
+    right: -0.75rem;
+    transform: translateX(100%);
+  }
+
+  .video-node:nth-child(2n+1):not(:last-child)::before {
+    right: -0.75rem;
+    width: calc(200% + 1.5rem);
+  }
+
+  .video-node:nth-child(2n+2):not(:last-child)::after {
+    left: 50%;
+    top: 100%;
+    transform: translateX(-50%);
+    height: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .roadmap-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .video-node:not(:last-child)::after {
+    left: 50%;
+    top: 100%;
+    transform: translateX(-50%);
+    height: 1rem;
+  }
+
+  .video-node::before {
+    display: none;
+  }
+}
+
+/* Enhanced Candy Wall Roadmap Styles */
+.learning-roadmap {
+  position: relative;
+  padding: 2.5rem;
+  background: linear-gradient(165deg, 
+    rgba(30, 35, 45, 0.95) 0%,
+    rgba(15, 20, 30, 0.98) 100%
+  );
+  border-radius: 20px;
+  margin-top: 1.5rem;
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.2),
+    inset 0 2px 8px rgba(255, 255, 255, 0.1);
+  overflow: hidden;
+}
+
+.learning-roadmap::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: 
+    radial-gradient(circle at 20% 20%, rgba(74, 144, 226, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 80% 80%, rgba(255, 107, 107, 0.1) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+.roadmap-path {
+  position: relative;
+  padding: 2rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0;
+  row-gap: 4rem;
+}
+
+.path-line {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    45deg,
+    rgba(74, 144, 226, 0.2) 0,
+    rgba(74, 144, 226, 0.2) 2px,
+    transparent 2px,
+    transparent 8px
+  );
+  mask: path('M50 0 Q100 0 100 50 L100 150 Q100 200 50 200 L-50 200 Q-100 200 -100 150 L-100 50 Q-100 0 -50 0 Z');
+  animation: pathGlow 3s infinite;
+}
+
+.video-node {
+  position: relative;
+  width: 75px;
+  height: 75px;
+  margin: 1rem;
+  background: rgba(30, 35, 45, 0.9);
+  border-radius: 50%;
+  padding: 0.8rem;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 2;
+  box-shadow: 
+    0 4px 12px rgba(0, 0, 0, 0.3),
+    inset 0 2px 4px rgba(255, 255, 255, 0.1);
+  border: 2px solid rgba(74, 144, 226, 0.3);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(8px);
+}
+
+.node-number {
+  position: absolute;
+  bottom: -24px;
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.8);
+  font-weight: 600;
+  background: rgba(74, 144, 226, 0.2);
+  padding: 2px 8px;
+  border-radius: 12px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.node-icon {
+  font-size: 1.6rem;
+  color: var(--accent-blue);
+  filter: drop-shadow(0 2px 4px rgba(74, 144, 226, 0.3));
+  transition: all 0.3s ease;
+}
+
+.video-node.completed {
+  background: rgba(74, 144, 226, 0.2);
+  border-color: var(--accent-blue);
+}
+
+.video-node.completed .node-icon {
+  color: var(--accent-secondary);
+  filter: drop-shadow(0 2px 4px rgba(255, 209, 102, 0.3));
+}
+
+.video-node.current {
+  background: rgba(255, 107, 107, 0.1);
+  border-color: var(--accent-primary);
+  animation: nodeGlow 2s infinite;
+}
+
+.video-node.current .node-icon {
+  color: var(--accent-primary);
+  filter: drop-shadow(0 2px 4px rgba(255, 107, 107, 0.3));
+}
+
+.video-node.locked {
+  background: rgba(30, 35, 45, 0.5);
+  border-color: rgba(255, 255, 255, 0.1);
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.video-node.locked .node-icon {
+  color: rgba(255, 255, 255, 0.3);
+}
+
+.video-node:hover {
+  transform: scale(1.15) translateY(-5px);
+  box-shadow: 
+    0 8px 20px rgba(0, 0, 0, 0.3),
+    inset 0 2px 4px rgba(255, 255, 255, 0.2);
+}
+
+.video-node:hover .node-icon {
+  transform: rotate(15deg) scale(1.1);
+}
+
+@keyframes nodeGlow {
+  0%, 100% {
+    box-shadow: 
+      0 0 15px rgba(255, 107, 107, 0.5),
+      inset 0 2px 4px rgba(255, 255, 255, 0.2);
+  }
+  50% {
+    box-shadow: 
+      0 0 25px rgba(255, 107, 107, 0.8),
+      inset 0 2px 4px rgba(255, 255, 255, 0.2);
+  }
+}
+
+@keyframes pathGlow {
+  0%, 100% {
+    opacity: 0.5;
+    background-position: 0 0;
+  }
+  50% {
+    opacity: 1;
+    background-position: 10px 10px;
+  }
+}
+
+/* Progress indicator styles */
+.node-progress {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  /* background: linear-gradient(135deg, var(--accent-blue), var(--accent-primary)); */
+  background-color: #17191be2; 
+  color: white;
+  padding: 0.2rem;
+  border-radius: 50%;
+  font-size: 0.65rem;
+  font-weight: bold;
+  min-width: 22px;
+  height: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* border: 2px solid var(--primary-bg); */
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  animation: progressPulse 2s infinite;
+}
+
+@keyframes progressPulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+}
+
+/* Learning Attributes Styles */
+.node-attributes {
+  position: absolute;
+  top: -45px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(30, 35, 45, 0.9);
+  padding: 4px 8px;
+  border-radius: 8px;
+  display: flex;
+  gap: 8px;
+  opacity: 0;
+  transition: all 0.3s ease;
+  pointer-events: none;
+  white-space: nowrap;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(74, 144, 226, 0.2);
+}
+
+.video-node:hover .node-attributes {
+  opacity: 1;
+  top: -50px;
+}
+
+.attribute {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.7rem;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.attribute-icon {
+  font-size: 0.8rem;
+  color: var(--accent-blue);
+}
+
+.difficulty-badge {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: translate(-30%, -30%);
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.7rem;
+  border: 2px solid var(--primary-bg);
+}
+
+.difficulty-easy {
+  background: #4CAF50;
+  color: white;
+}
+
+.difficulty-medium {
+  background: #FFC107;
+  color: black;
+}
+
+.difficulty-hard {
+  background: #FF5722;
+  color: white;
+}
+
+/* Tooltip for locked nodes */
+.locked-info {
+  position: absolute;
+  bottom: -50px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(255, 107, 107, 0.9);
+  padding: 4px 8px;
+  border-radius: 8px;
+  font-size: 0.7rem;
+  color: white;
+  white-space: nowrap;
+  opacity: 0;
+  transition: all 0.3s ease;
+  pointer-events: none;
+}
+
+.video-node.locked:hover .locked-info {
+  opacity: 1;
+  bottom: -45px;
+}
+
+/* Adjust connecting lines for increased spacing */
+.video-node::before,
+.video-node::after {
+  content: '';
+  position: absolute;
+  background: linear-gradient(90deg,
+    var(--accent-blue) 40%,
+    transparent 100%
+  );
+  z-index: 1;
+}
+
+.video-node::before {
+  right: -1.5rem;
+  top: 50%;
+  height: 3px;
+  width: 1.5rem;
+  transform: translateY(-50%);
+}
+
+.video-node::after {
+  bottom: -2rem;
+  left: 50%;
+  width: 3px;
+  height: 2rem;
+  transform: translateX(-50%);
+}
+
+/* Adjust attribute positioning for increased spacing */
+.node-attributes {
+  top: -45px;
+}
+
+.video-node:hover .node-attributes {
+  top: -50px;
+}
+
+.locked-info {
+  bottom: -50px;
+}
+
+.video-node.locked:hover .locked-info {
+  bottom: -45px;
+}
+
+/* Adjust responsive layout */
+@media (max-width: 768px) {
+  .roadmap-path {
+    row-gap: 3rem;
+  }
+  
+  .video-node::after {
+    height: 1.5rem;
+    bottom: -1.5rem;
+  }
+}
+
+/* Achievement Styles */
+.achievements-section {
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+  padding: 1.2rem;
+}
+
+.achievements-section h3 {
+  margin-bottom: 1rem;
+  font-size: 1.2rem;
+  color: var(--text-primary);
+}
+
+.achievements-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  width: 100%;
+}
+
+.achievement-item {
+  background: var(--primary-bg);
+  border-radius: 12px;
+  padding: 0.8rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.achievement-header {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  margin-bottom: 0.5rem;
+  width: 100%;
+}
+
+.achievement-info {
+  flex: 1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.achievement-info h4 {
+  font-size: 0.85rem;
+  margin: 0;
+  color: var(--text-primary);
+}
+
+.achievement-info span {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+}
+
+.progress-bar {
+  height: 4px;
+  background: var(--secondary-bg);
+  border-radius: 2px;
+  overflow: hidden;
+  width: 100%;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .achievements-list {
+    gap: 0.6rem;
+  }
+  
+  .achievement-item {
+    padding: 0.7rem;
+  }
 } 

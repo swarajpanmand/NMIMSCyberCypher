@@ -4,22 +4,34 @@
   height: 80vh;
   max-width: 1000px;
   margin: 0 auto;
-  background-color: var(--secondary-bg);
-  border-radius: 12px;
+  background: linear-gradient(145deg, 
+    var(--secondary-bg) 0%,
+    rgba(30, 35, 45, 0.95) 100%
+  );
+  border-radius: 16px;
   overflow: hidden;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+  border: 1px solid rgba(74, 144, 226, 0.2);
 }
 
-/* Settings Panel */
+/* Enhanced Settings Panel */
 .chat-settings {
-  background-color: var(--secondary-bg);
-  padding: 1rem;
-  border-bottom: 1px solid var(--accent-blue);
+  background: rgba(30, 35, 45, 0.6);
+  padding: 1.2rem;
+  border-bottom: 1px solid rgba(74, 144, 226, 0.2);
+  backdrop-filter: blur(8px);
+}
+
+.chat-settings h3 {
+  color: var(--text-primary);
+  font-size: 1.1rem;
+  margin-bottom: 0.8rem;
 }
 
 .settings-controls {
   display: flex;
   gap: 2rem;
-  margin-top: 1rem;
+  margin-top: 0.8rem;
 }
 
 .setting-item {
@@ -28,68 +40,88 @@
   gap: 1rem;
 }
 
+.setting-item label {
+  color: var(--text-primary);
+  font-size: 0.9rem;
+}
+
 .setting-item select {
-  padding: 0.5rem;
-  border-radius: 6px;
-  border: 1px solid #a39c9c;
-  background-color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  border: 1px solid rgba(74, 144, 226, 0.3);
+  background: rgba(30, 35, 45, 0.8);
+  color: var(--text-primary);
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
 }
 
 .voice-btn {
-  padding: 0.5rem 1rem;
-  border-radius: 20px;
+  padding: 0.6rem 1.2rem;
+  border-radius: 25px;
   border: none;
-  background-color: var(--accent-blue);
-  color: var(--text-primary);
+  background: linear-gradient(145deg, var(--accent-blue), #2980b9);
+  color: white;
   cursor: pointer;
-  transition: background-color 0.2s;
+  transition: all 0.3s ease;
+  font-size: 0.9rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.voice-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 
 .voice-btn.recording {
-  background-color: var(--accent-primary);
-  animation: pulse 1.5s infinite;
+  background: linear-gradient(145deg, var(--accent-primary), #e74c3c);
+  animation: recordingPulse 1.5s infinite;
 }
 
-/* Chat Messages Area */
+/* Enhanced Chat Messages Area */
 .chat-messages {
   flex-grow: 1;
-  padding: 1rem;
+  padding: 1.5rem;
   overflow-y: auto;
-  background-color: #ffffff;
+  background: rgba(255, 255, 255, 0.02);
+  backdrop-filter: blur(8px);
 }
 
 .message {
-  margin-bottom: 1rem;
-  max-width: 80%;
-}
-
-.message.user {
-  margin-left: auto;
+  margin-bottom: 1.2rem;
+  max-width: 85%;
+  animation: messageSlide 0.3s ease-out;
 }
 
 .message-content {
-  padding: 1rem;
-  border-radius: 12px;
+  padding: 1rem 1.2rem;
+  border-radius: 16px;
   position: relative;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 .message.ai .message-content {
-  background-color: var(--secondary-bg);
+  background: rgba(74, 144, 226, 0.1);
+  border: 1px solid rgba(74, 144, 226, 0.2);
   margin-right: auto;
-  color: var(--text-primary);
 }
 
 .message.user .message-content {
-  background-color: var(--accent-blue);
-  color: var(--text-primary);
+  background: rgba(74, 144, 226, 0.2);
+  border: 1px solid rgba(74, 144, 226, 0.3);
+  margin-left: auto;
 }
 
 .ai-icon {
   position: absolute;
-  left: -30px;
+  left: -40px;
   top: 50%;
   transform: translateY(-50%);
-  font-size: 1.2rem;
+  font-size: 1.4rem;
+  background: rgba(74, 144, 226, 0.1);
+  padding: 0.5rem;
+  border-radius: 50%;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 .timestamp {
@@ -99,21 +131,32 @@
   margin-top: 0.25rem;
 }
 
-/* Input Area */
+/* Enhanced Input Area */
 .chat-input {
-  padding: 1rem;
-  background-color: #ffffff;
-  border-top: 1px solid #d9cad3;
+  padding: 1.2rem;
+  background: rgba(30, 35, 45, 0.6);
+  border-top: 1px solid rgba(74, 144, 226, 0.2);
+  backdrop-filter: blur(8px);
 }
 
 .chat-input textarea {
   width: 100%;
   padding: 1rem;
-  border: 1px solid #d9cad3;
-  border-radius: 8px;
+  border: 1px solid rgba(74, 144, 226, 0.3);
+  border-radius: 12px;
   resize: none;
   min-height: 100px;
   margin-bottom: 1rem;
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--text-primary);
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
+}
+
+.chat-input textarea:focus {
+  outline: none;
+  border-color: var(--accent-blue);
+  box-shadow: 0 0 0 2px rgba(74, 144, 226, 0.2);
 }
 
 .input-buttons {
@@ -125,29 +168,68 @@
 .send-btn, .clear-btn {
   padding: 0.75rem 1.5rem;
   border: none;
-  border-radius: 8px;
+  border-radius: 12px;
   cursor: pointer;
-  font-weight: 600;
-  transition: transform 0.2s;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  font-size: 0.9rem;
 }
 
 .send-btn {
-  background-color: var(--accent-primary);
-  color: var(--text-primary);
+  background: linear-gradient(145deg, var(--accent-blue), #2980b9);
+  color: white;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
 
 .clear-btn {
-  background-color: #a39c9c;
-  color: white;
+  background: rgba(163, 156, 156, 0.2);
+  color: var(--text-primary);
+  border: 1px solid rgba(163, 156, 156, 0.3);
 }
 
-.send-btn:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
+.send-btn:hover, .clear-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 
-@keyframes pulse {
-  0% { opacity: 1; }
-  50% { opacity: 0.5; }
-  100% { opacity: 1; }
+/* Animations */
+@keyframes messageSlide {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes recordingPulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(231, 76, 60, 0.4);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(231, 76, 60, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(231, 76, 60, 0);
+  }
+}
+
+/* Scrollbar Styling */
+.chat-messages::-webkit-scrollbar {
+  width: 6px;
+}
+
+.chat-messages::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.chat-messages::-webkit-scrollbar-thumb {
+  background: rgba(74, 144, 226, 0.3);
+  border-radius: 3px;
+}
+
+.chat-messages::-webkit-scrollbar-thumb:hover {
+  background: rgba(74, 144, 226, 0.5);
 } 
