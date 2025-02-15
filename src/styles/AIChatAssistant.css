@@ -1,0 +1,152 @@
+.ai-chat-assistant {
+  display: flex;
+  flex-direction: column;
+  height: 80vh;
+  max-width: 1000px;
+  margin: 0 auto;
+  background-color: #ffffff;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+/* Settings Panel */
+.chat-settings {
+  background-color: #edd5db;
+  padding: 1rem;
+  border-bottom: 1px solid #d9cad3;
+}
+
+.settings-controls {
+  display: flex;
+  gap: 2rem;
+  margin-top: 1rem;
+}
+
+.setting-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.setting-item select {
+  padding: 0.5rem;
+  border-radius: 6px;
+  border: 1px solid #a39c9c;
+  background-color: white;
+}
+
+.voice-btn {
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  border: none;
+  background-color: #a2b6a1;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.voice-btn.recording {
+  background-color: #b8989c;
+  animation: pulse 1.5s infinite;
+}
+
+/* Chat Messages Area */
+.chat-messages {
+  flex-grow: 1;
+  padding: 1rem;
+  overflow-y: auto;
+  background-color: #ffffff;
+}
+
+.message {
+  margin-bottom: 1rem;
+  max-width: 80%;
+}
+
+.message.user {
+  margin-left: auto;
+}
+
+.message-content {
+  padding: 1rem;
+  border-radius: 12px;
+  position: relative;
+}
+
+.message.ai .message-content {
+  background-color: #edd5db;
+  margin-right: auto;
+}
+
+.message.user .message-content {
+  background-color: #a2b6a1;
+  color: white;
+}
+
+.ai-icon {
+  position: absolute;
+  left: -30px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.2rem;
+}
+
+.timestamp {
+  font-size: 0.8rem;
+  color: #a39c9c;
+  display: block;
+  margin-top: 0.25rem;
+}
+
+/* Input Area */
+.chat-input {
+  padding: 1rem;
+  background-color: #ffffff;
+  border-top: 1px solid #d9cad3;
+}
+
+.chat-input textarea {
+  width: 100%;
+  padding: 1rem;
+  border: 1px solid #d9cad3;
+  border-radius: 8px;
+  resize: none;
+  min-height: 100px;
+  margin-bottom: 1rem;
+}
+
+.input-buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: flex-end;
+}
+
+.send-btn, .clear-btn {
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: transform 0.2s;
+}
+
+.send-btn {
+  background-color: #cfb1bf;
+  color: white;
+}
+
+.clear-btn {
+  background-color: #a39c9c;
+  color: white;
+}
+
+.send-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+@keyframes pulse {
+  0% { opacity: 1; }
+  50% { opacity: 0.5; }
+  100% { opacity: 1; }
+} 

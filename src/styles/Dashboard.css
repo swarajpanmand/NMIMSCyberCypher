@@ -1,0 +1,156 @@
+.dashboard {
+  background-color: #ffffff;
+  padding: 2rem;
+}
+
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: 250px 1fr 300px;
+  gap: 2rem;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+/* Sidebars */
+.progress-sidebar, .notes-sidebar {
+  background-color: #edd5db;
+  border-radius: 12px;
+  padding: 1.5rem;
+}
+
+/* Profile Summary */
+.profile-summary {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.avatar-container {
+  position: relative;
+  display: inline-block;
+}
+
+.avatar {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  border: 3px solid #a2b6a1;
+}
+
+.level-badge {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  background-color: #cfb1bf;
+  color: white;
+  padding: 0.25rem 0.5rem;
+  border-radius: 12px;
+  font-size: 0.8rem;
+}
+
+/* Achievements */
+.badges-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+}
+
+.badge {
+  background-color: #d9cad3;
+  border-radius: 8px;
+  padding: 1rem;
+  text-align: center;
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.badge:hover {
+  transform: scale(1.1);
+}
+
+.badge.locked {
+  background-color: #a39c9c;
+  opacity: 0.5;
+}
+
+/* Main Content */
+.mode-selector {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.mode-btn {
+  background-color: #a2b6a1;
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.mode-btn.active {
+  background-color: #cfb1bf;
+}
+
+/* Learning Map */
+.map-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+  padding: 2rem;
+}
+
+.map-node {
+  background-color: #d9cad3;
+  padding: 1.5rem;
+  border-radius: 12px;
+  text-align: center;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.map-node.completed {
+  background-color: #a2b6a1;
+}
+
+.map-node.current {
+  background-color: #cfb1bf;
+  transform: scale(1.1);
+}
+
+.map-node.locked {
+  background-color: #a39c9c;
+  opacity: 0.7;
+}
+
+/* Notes & Reminders */
+.sticky-notes .note {
+  background-color: #edd5db;
+  padding: 1rem;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+}
+
+.note textarea {
+  width: 100%;
+  border: none;
+  background: transparent;
+  resize: none;
+  font-family: inherit;
+}
+
+.reminder {
+  background-color: #d9cad3;
+  padding: 0.75rem;
+  border-radius: 8px;
+  margin-bottom: 0.5rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.reminder-time {
+  color: #b8989c;
+  font-weight: bold;
+} 

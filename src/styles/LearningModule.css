@@ -1,0 +1,156 @@
+.learning-module {
+  background-color: #ffffff;
+  padding: 2rem;
+  border-radius: 12px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Problem Header */
+.problem-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.difficulty-badge {
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-weight: 600;
+}
+
+.difficulty-badge[data-difficulty="easy"] {
+  background-color: #a2b6a1;
+  color: white;
+}
+
+.difficulty-badge[data-difficulty="medium"] {
+  background-color: #cfb1bf;
+  color: white;
+}
+
+.difficulty-badge[data-difficulty="hard"] {
+  background-color: #b8989c;
+  color: white;
+}
+
+/* Learning Resources */
+.resource-tabs {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.tab {
+  padding: 0.75rem 1.5rem;
+  border: none;
+  background-color: #edd5db;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.tab.active {
+  background-color: #a2b6a1;
+  color: white;
+}
+
+/* Examples */
+.example-card {
+  background-color: #edd5db;
+  padding: 1rem;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+}
+
+/* Coding Area */
+.coding-area {
+  margin: 2rem 0;
+}
+
+.editor-container {
+  background-color: #2d2d2d;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.editor-header {
+  background-color: #a39c9c;
+  padding: 0.5rem 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: white;
+}
+
+.code-editor {
+  width: 100%;
+  min-height: 300px;
+  padding: 1rem;
+  background-color: #2d2d2d;
+  color: #ffffff;
+  border: none;
+  font-family: 'Consolas', monospace;
+  resize: vertical;
+}
+
+/* Hint Panel */
+.hint-panel {
+  background-color: #d9cad3;
+  padding: 1rem;
+  border-radius: 8px;
+  margin: 1rem 0;
+}
+
+/* AI Assistant */
+.ai-assistant {
+  background-color: #edd5db;
+  padding: 1rem;
+  border-radius: 8px;
+  margin-top: 1rem;
+}
+
+.ai-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.ai-response {
+  background-color: white;
+  padding: 1rem;
+  border-radius: 8px;
+}
+
+/* Action Buttons */
+.action-buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: flex-end;
+  margin-top: 2rem;
+}
+
+.run-tests-btn, .submit-btn {
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: transform 0.2s;
+}
+
+.run-tests-btn {
+  background-color: #a2b6a1;
+  color: white;
+}
+
+.submit-btn {
+  background-color: #cfb1bf;
+  color: white;
+}
+
+.run-tests-btn:hover, .submit-btn:hover {
+  transform: scale(1.05);
+} 
