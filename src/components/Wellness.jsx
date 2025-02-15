@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useEffect, useState } from 'react'
 
 const Wellness = () => {
   const [activeTab, setActiveTab] = useState('focus')
@@ -6,6 +6,14 @@ const Wellness = () => {
   const [isTimerRunning, setIsTimerRunning] = useState(false)
   const [showBreakAlert, setShowBreakAlert] = useState(false)
   const [dailyTip, setDailyTip] = useState('')
+
+  const [focusMode, setFocusMode] = useState(() => {
+    return JSON.parse(localStorage.getItem('focusMode')) || false
+  });
+
+  useEffect(() => {
+    localStorage.setItem('focusMode', JSON.stringify(focusMode));
+  }, [focusMode]);
 
   const wellnessTips = {
     focus: [
@@ -114,7 +122,10 @@ const Wellness = () => {
         </div>
         <div className="timer-controls">
           <button 
-            onClick={() => setIsTimerRunning(!isTimerRunning)}
+            onClick={() => {
+              setIsTimerRunning(!isTimerRunning)
+              setFocusMode(!focusMode)
+            }}
             className={`timer-btn ${isTimerRunning ? 'pause' : 'start'}`}
           >
             {isTimerRunning ? 'Pause' : 'Start'} Focus Session

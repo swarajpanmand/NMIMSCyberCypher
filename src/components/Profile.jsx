@@ -1,5 +1,5 @@
-import { useState } from 'react'
-import { FaUser, FaCrown, FaStar, FaTrophy } from 'react-icons/fa';
+import { useState } from 'react';
+import { FaCrown, FaStar, FaTrophy, FaUser } from 'react-icons/fa';
 
 const Profile = () => {
   const [activeSection, setActiveSection] = useState('profile')
