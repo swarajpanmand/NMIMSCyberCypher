@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { FaFire } from 'react-icons/fa'
 import './App.css'
 import Dashboard from './components/Dashboard'
 import LearningModule from './components/LearningModule'
@@ -14,10 +15,12 @@ import './styles/CommunityDiscussion.css'
 import './styles/Wellness.css'
 import './styles/Profile.css'
 import './styles/Settings.css'
+import Navbar from './components/Navbar'
+import './styles/Navbar.css'
 
 function App() {
   const [currentPage, setCurrentPage] = useState('dashboard')
-  const [currentStreak, setCurrentStreak] = useState(0)
+  const [currentStreak, setCurrentStreak] = useState(7)
   const [showBreakReminder, setShowBreakReminder] = useState(false)
   const [isMenuOpen, setIsMenuOpen] = useState(false)
 
@@ -54,44 +57,22 @@ function App() {
 
   return (
     <div className="app-container">
-      {/* Sidebar Navigation */}
-      <nav className={`sidebar ${isMenuOpen ? 'open' : ''}`}>
-        <button 
-          className="menu-toggle"
-          onClick={() => setIsMenuOpen(!isMenuOpen)}
-          aria-label="Toggle menu"
-        >
-          {isMenuOpen ? '✕' : '☰'}
-        </button>
-        
-        <div className="nav-links">
-          {pages.map(page => (
-            <button
-              key={page.id}
-              onClick={() => {
-                setCurrentPage(page.id)
-                setIsMenuOpen(false)
-              }}
-              className={`nav-link ${currentPage === page.id ? 'active' : ''}`}
-              aria-label={page.name}
-            >
-              <span className="nav-icon">{page.icon}</span>
-              <span className="nav-text">{page.name}</span>
-            </button>
-          ))}
-        </div>
-      </nav>
-
-      {/* Main Content */}
-      <main className="main-content">
-        <header className="app-header">
-          <h1>CodeQuest: Adaptive Learning</h1>
-          <div className="user-stats">
-            <span>🔥 Current Streak: {currentStreak} days</span>
-            <span>⭐ Points: 0</span>
+      <header className="app-header">
+        <div className="header-content">
+          <h1>CodeQuest</h1>
+          <Navbar 
+            currentPage={currentPage} 
+            setCurrentPage={setCurrentPage} 
+            currentStreak={currentStreak}
+          />
+          <div className="streak-counter">
+            <FaFire className="streak-icon" />
+            <span>{currentStreak}</span>
           </div>
-        </header>
-
+        </div>
+      </header>
+      
+      <main className="main-content">
         <div className="page-content">
           {renderPage()}
         </div>

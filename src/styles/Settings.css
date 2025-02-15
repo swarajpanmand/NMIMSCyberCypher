@@ -9,8 +9,10 @@
   display: flex;
   gap: 1rem;
   margin-bottom: 2rem;
-  border-bottom: 2px solid #edd5db;
-  padding-bottom: 1rem;
+  background-color: var(--secondary-bg);
+  padding: 1rem;
+  border-radius: 12px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .nav-tab {
@@ -19,36 +21,47 @@
   background: none;
   cursor: pointer;
   font-weight: 500;
-  color: #666;
+  color: var(--text-secondary);
   position: relative;
+  transition: all 0.2s ease;
+  border-radius: 8px;
+}
+
+.nav-tab:hover {
+  background-color: var(--accent-blue);
+  color: var(--text-primary);
 }
 
 .nav-tab.active {
-  color: #a2b6a1;
+  background-color: var(--accent-blue);
+  color: var(--text-primary);
 }
 
+/* Remove the active tab underline styles */
 .nav-tab.active::after {
-  content: '';
-  position: absolute;
-  bottom: -1rem;
-  left: 0;
-  right: 0;
-  height: 2px;
-  background-color: #a2b6a1;
+  display: none;
+}
+
+/* Add icon styles */
+.nav-tab-icon {
+  margin-right: 0.5rem;
+  font-size: 1.2rem;
+  vertical-align: middle;
 }
 
 /* Settings Content */
 .settings-section {
-  background-color: white;
+  background-color: var(--secondary-bg);
   padding: 2rem;
   border-radius: 12px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  color: var(--text-primary);
 }
 
 .setting-group {
   margin-bottom: 2rem;
   padding-bottom: 1rem;
-  border-bottom: 1px solid #edd5db;
+  border-bottom: 1px solid var(--accent-blue);
 }
 
 .setting-group:last-child {
@@ -56,7 +69,7 @@
 }
 
 .setting-group h3 {
-  color: #666;
+  color: var(--text-secondary);
   margin-bottom: 1rem;
 }
 
@@ -67,9 +80,11 @@ input[type="time"],
 select {
   width: 100%;
   padding: 0.75rem;
-  border: 1px solid #d9cad3;
+  border: 1px solid var(--accent-blue);
   border-radius: 8px;
   font-size: 1rem;
+  background-color: var(--primary-bg);
+  color: var(--text-primary);
   margin-bottom: 0.5rem;
 }
 
@@ -94,9 +109,10 @@ select {
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: #d9cad3;
+  background-color: var(--secondary-bg);
   transition: .4s;
   border-radius: 34px;
+  border: 1px solid var(--accent-blue);
 }
 
 .toggle-slider:before {
@@ -106,13 +122,13 @@ select {
   width: 26px;
   left: 4px;
   bottom: 4px;
-  background-color: white;
+  background-color: var(--text-primary);
   transition: .4s;
   border-radius: 50%;
 }
 
 input:checked + .toggle-slider {
-  background-color: #a2b6a1;
+  background-color: var(--accent-blue);
 }
 
 input:checked + .toggle-slider:before {
@@ -131,8 +147,10 @@ input:checked + .toggle-slider:before {
   justify-content: space-between;
   align-items: center;
   padding: 1rem;
-  background-color: #edd5db;
+  background-color: var(--secondary-bg);
+  border: 1px solid var(--accent-blue);
   border-radius: 8px;
+  color: var(--text-primary);
 }
 
 .link-btn, .unlink-btn {
@@ -143,13 +161,13 @@ input:checked + .toggle-slider:before {
 }
 
 .link-btn {
-  background-color: #a2b6a1;
-  color: white;
+  background-color: var(--accent-blue);
+  color: var(--text-primary);
 }
 
 .unlink-btn {
-  background-color: #b8989c;
-  color: white;
+  background-color: var(--accent-primary);
+  color: var(--text-primary);
 }
 
 /* Reminder Settings */
@@ -175,8 +193,8 @@ input:checked + .toggle-slider:before {
 }
 
 .save-settings-btn {
-  background-color: #cfb1bf;
-  color: white;
+  background-color: var(--accent-primary);
+  color: var(--text-primary);
   border: none;
   padding: 1rem 2rem;
   border-radius: 8px;
@@ -187,6 +205,7 @@ input:checked + .toggle-slider:before {
 
 .save-settings-btn:hover {
   transform: scale(1.05);
+  background-color: var(--accent-blue);
 }
 
 /* Responsive Design */

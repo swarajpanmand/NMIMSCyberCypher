@@ -1,5 +1,5 @@
 #root {
-  max-width: 1280px;
+  /* max-width: 1280px; */
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
@@ -89,9 +89,8 @@ body {
 
 /* App Layout */
 .app-container {
-  display: grid;
-  grid-template-columns: auto 1fr;
   min-height: 100vh;
+  background-color: var(--primary-bg);
 }
 
 /* Sidebar Navigation */
@@ -151,42 +150,61 @@ body {
 
 /* Main Content */
 .main-content {
-  padding: var(--spacing-xl);
+  margin-top: 80px; /* Add space for fixed header */
+  padding: 2rem;
   max-width: 1400px;
-  margin: 0 auto;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 /* Header */
 .app-header {
-  margin-bottom: var(--spacing-xl);
-  padding-bottom: var(--spacing-md);
-  border-bottom: 2px solid var(--accent-blue);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  background-color: var(--secondary-bg);
+  padding: 1rem 2rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
 }
 
-.app-header h1 {
+.header-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1400px;
+  margin: 0 auto;
+  gap: 2rem;
+}
+
+.header-content h1 {
   color: var(--accent-secondary);
-  font-size: 1.8rem;
+  font-size: 2rem;
+  font-weight: 700;
+  white-space: nowrap;
+  margin: 0;
+  letter-spacing: 0.5px;
 }
 
 .user-stats {
   display: flex;
-  gap: var(--spacing-md);
-  font-size: 1rem;
+  gap: 1.5rem;
+  color: var(--text-primary);
+  white-space: nowrap;
+  align-items: center;
 }
 
 /* Break Reminder */
 .break-reminder {
   position: fixed;
-  bottom: var(--spacing-xl);
-  right: var(--spacing-xl);
+  bottom: 2rem;
+  right: 2rem;
   background-color: var(--accent-primary);
   color: var(--text-primary);
-  padding: var(--spacing-md) var(--spacing-lg);
-  border-radius: var(--radius-md);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  padding: 1rem 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
   animation: slideIn 0.3s ease-out;
 }
 
@@ -226,13 +244,23 @@ body {
   }
 
   .main-content {
-    padding: var(--spacing-md);
+    padding: 1rem;
   }
 
   .app-header {
+    padding: 1rem;
+  }
+
+  .header-content {
     flex-direction: column;
-    gap: var(--spacing-md);
-    text-align: center;
+    gap: 1rem;
+  }
+
+  .user-stats {
+    order: 3;
+    width: 100%;
+    justify-content: center;
+    gap: 1rem;
   }
 }
 
@@ -267,4 +295,20 @@ body {
   opacity: 0.5;
   pointer-events: none;
   z-index: 9999;
+}
+
+/* Update streak counter styles */
+.streak-counter {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--accent-secondary);
+  font-weight: 600;
+  font-size: 1.2rem;
+  margin-left: auto;
+}
+
+.streak-icon {
+  color: var(--accent-primary);
+  font-size: 1.4rem;
 }

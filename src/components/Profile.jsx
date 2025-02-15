@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { FaUser, FaCrown, FaStar, FaTrophy } from 'react-icons/fa';
 
 const Profile = () => {
   const [activeSection, setActiveSection] = useState('profile')
@@ -43,20 +44,15 @@ const Profile = () => {
       {/* Profile Header */}
       <div className="profile-header">
         <div className="profile-avatar">
-          <img src={settings.avatar} alt="User Avatar" />
+          <FaUser className="avatar-icon" />
           <button className="change-avatar-btn">Change Avatar</button>
         </div>
         <div className="profile-info">
           <h2>{settings.username}</h2>
           <div className="badge-showcase">
-            {settings.selectedBadges.map(badgeId => {
-              const badge = badges.find(b => b.id === badgeId)
-              return (
-                <span key={badgeId} className="badge" title={badge.name}>
-                  {badge.icon}
-                </span>
-              )
-            })}
+            <FaCrown className="badge" title="Premium Member" />
+            <FaStar className="badge" title="Top Contributor" />
+            <FaTrophy className="badge" title="Achievement Master" />
           </div>
         </div>
       </div>
