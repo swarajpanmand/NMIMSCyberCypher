@@ -1,7 +1,19 @@
 import { useState } from 'react'
+import { 
+  FaUsers, 
+  FaHeart, 
+  FaComment, 
+  FaShare, 
+  FaUserCircle,
+  FaSearch,
+  FaFilter,
+  FaTags,
+  FaStar,
+  FaBookmark
+} from 'react-icons/fa';
 
 const CommunityDiscussion = () => {
-  const [activeCategory, setActiveCategory] = useState('all')
+  const [activeFilter, setActiveFilter] = useState('all')
   const [showNewPostForm, setShowNewPostForm] = useState(false)
   const [newPost, setNewPost] = useState({ title: '', content: '', category: 'general' })
   const [searchQuery, setSearchQuery] = useState('')
@@ -65,16 +77,17 @@ const CommunityDiscussion = () => {
   }
 
   const filteredDiscussions = discussions.filter(discussion => 
-    (activeCategory === 'all' || discussion.category === activeCategory) &&
+    (activeFilter === 'all' || discussion.category === activeFilter) &&
     (discussion.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
      discussion.content.toLowerCase().includes(searchQuery.toLowerCase()))
   )
 
   return (
-    <div className="community-discussion">
-      {/* Search and New Post */}
+    <div className="community-container">
       <div className="community-header">
+        <h2><FaUsers className="header-icon" /> ADHD Learning Community</h2>
         <div className="search-bar">
+          <FaSearch className="search-icon" />
           <input
             type="text"
             placeholder="Search discussions..."
@@ -82,27 +95,70 @@ const CommunityDiscussion = () => {
             onChange={(e) => setSearchQuery(e.target.value)}
           />
         </div>
+      </div>
+
+      <div className="filters-section">
         <button 
-          className="new-post-btn"
-          onClick={() => setShowNewPostForm(true)}
+          className={`filter-btn ${activeFilter === 'all' ? 'active' : ''}`}
+          onClick={() => setActiveFilter('all')}
         >
-          Start New Discussion
+          <FaFilter /> All Posts
+        </button>
+        <button 
+          className={`filter-btn ${activeFilter === 'popular' ? 'active' : ''}`}
+          onClick={() => setActiveFilter('popular')}
+        >
+          <FaStar /> Popular
+        </button>
+        <button 
+          className={`filter-btn ${activeFilter === 'saved' ? 'active' : ''}`}
+          onClick={() => setActiveFilter('saved')}
+        >
+          <FaBookmark /> Saved
         </button>
       </div>
 
-      {/* Categories */}
-      <div className="categories">
-        {categories.map(category => (
-          <button
-            key={category.id}
-            className={`category-btn ${activeCategory === category.id ? 'active' : ''}`}
-            onClick={() => setActiveCategory(category.id)}
-          >
-            <span className="category-icon">{category.icon}</span>
-            {category.label}
-          </button>
+      <div className="posts-container">
+        {filteredDiscussions.map(discussion => (
+          <div key={discussion.id} className="post-card">
+            <div className="post-header">
+              <div className="post-author">
+                <div className="author-avatar">{discussion.author.substring(0, 2)}</div>
+                <span className="author-name">{discussion.author}</span>
+              </div>
+              <button className="bookmark-btn">
+                <FaBookmark />
+              </button>
+            </div>
+
+            <h3 className="post-title">{discussion.title}</h3>
+            <p className="post-content">{discussion.content}</p>
+
+            <div className="post-tags">
+              <FaTags className="tags-icon" />
+              <span className="tag">{categories.find(c => c.id === discussion.category)?.label}</span>
+            </div>
+
+            <div className="post-actions">
+              <button className="action-btn">
+                <FaHeart className="action-icon" />
+                <span>{discussion.likes}</span>
+              </button>
+              <button className="action-btn">
+                <FaComment className="action-icon" />
+                <span>{discussion.replies} replies</span>
+              </button>
+            </div>
+          </div>
         ))}
       </div>
+
+      <button 
+        className="create-post-btn"
+        onClick={() => setShowNewPostForm(true)}
+      >
+        <span>Start a Discussion</span>
+      </button>
 
       {/* New Post Form */}
       {showNewPostForm && (
@@ -141,33 +197,6 @@ const CommunityDiscussion = () => {
           </div>
         </div>
       )}
-
-      {/* Discussions List */}
-      <div className="discussions-list">
-        {filteredDiscussions.map(discussion => (
-          <div key={discussion.id} className="discussion-card">
-            <div className="discussion-header">
-              <h3>{discussion.title}</h3>
-              <span className="category-tag">{categories.find(c => c.id === discussion.category)?.icon}</span>
-            </div>
-            <p className="discussion-content">{discussion.content}</p>
-            <div className="discussion-footer">
-              <span className="author">{discussion.author}</span>
-              <span className="timestamp">
-                {discussion.timestamp.toLocaleString()}
-              </span>
-              <div className="interactions">
-                <button className="like-btn">
-                  👍 {discussion.likes}
-                </button>
-                <span className="replies">
-                  💬 {discussion.replies} replies
-                </span>
-              </div>
-            </div>
-          </div>
-        ))}
-      </div>
     </div>
   )
 }
