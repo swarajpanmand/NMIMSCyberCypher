@@ -24,6 +24,7 @@
   backdrop-filter: blur(10px);
   position: sticky;
   top: 2rem;
+  
 }
 
 .settings-nav-item {
@@ -37,7 +38,11 @@
   cursor: pointer;
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
-  overflow: hidden;
+  overflow: hidden; 
+}
+.nav-tab {
+  margin: 0.5rem;
+  background: #07060b46;
 }
 
 .settings-nav-item::before {
@@ -54,6 +59,9 @@
 
 .settings-nav-item:hover::before {
   opacity: 1;
+}
+.verify-btn{
+  margin-left: 10px;
 }
 
 .settings-nav-item.active {
@@ -86,7 +94,10 @@
 }
 
 .settings-section {
-  margin-bottom: 3rem;
+  padding: 2rem;
+  background: var(--secondary-bg);
+  border-radius: 20px;
+  margin-bottom: 2rem;
   animation: fadeIn 0.5s ease-out;
 }
 
@@ -602,4 +613,304 @@ input:checked + .toggle-slider:before {
 .change-avatar-btn:hover {
   transform: translateY(-2px);
   box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
-} 
+}
+
+/* Settings Avatar Styles */
+.current-avatar-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 2rem 0;
+  padding: 1.5rem;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 20px;
+}
+
+.current-avatar-large {
+  position: relative;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background: linear-gradient(145deg, 
+    rgba(255, 255, 255, 0.1),
+    rgba(255, 255, 255, 0.05)
+  );
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1rem;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+}
+
+.current-avatar-large svg {
+  font-size: 3.5rem;
+  transition: all 0.3s ease;
+}
+
+.avatar-label {
+  font-size: 1.1rem;
+  color: var(--text-primary);
+  margin-top: 0.5rem;
+}
+
+.settings-avatar-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.2rem;
+  margin-top: 1.5rem;
+}
+
+.settings-avatar-option {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem;
+  border-radius: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.settings-avatar-icon {
+  font-size: 2.8rem;
+  margin-bottom: 0.6rem;
+  transition: all 0.3s ease;
+}
+
+.settings-avatar-option:hover {
+  transform: translateY(-3px);
+  background: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+}
+
+.settings-avatar-option.selected {
+  background: linear-gradient(145deg,
+    var(--accent-primary),
+    var(--accent-secondary)
+  );
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+}
+
+.settings-avatar-option.selected .settings-avatar-icon {
+  transform: scale(1.1);
+  color: white !important;
+}
+
+.settings-avatar-option span {
+  font-size: 0.9rem;
+  color: var(--text-primary);
+}
+
+.avatar-selection-panel {
+  background: var(--secondary-bg);
+  padding: 1.5rem;
+  border-radius: 16px;
+  margin: 1.5rem 0;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+  border: 1px solid rgba(74, 144, 226, 0.2);
+}
+
+.avatar-selection-panel h3 {
+  font-size: 1.3rem;
+  color: var(--text-primary);
+  margin-bottom: 1.2rem;
+}
+
+/* Settings Groups */
+.settings-group {
+  margin: 2rem 0;
+  padding: 1.5rem;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 16px;
+}
+
+.settings-group h3 {
+  font-size: 1.2rem;
+  color: var(--text-primary);
+  margin-bottom: 1rem;
+}
+
+/* Enhanced Button and Input Styles */
+.settings-container {
+  padding: 2rem;
+}
+
+.settings-section {
+  padding: 2rem;
+  background: var(--secondary-bg);
+  border-radius: 20px;
+  margin-bottom: 2rem;
+}
+
+/* Button Styles */
+.settings-btn {
+  padding: 0.9rem 1.8rem;
+  border-radius: 12px;
+  border: none;
+  background: linear-gradient(145deg, 
+    var(--accent-primary),
+    var(--accent-secondary)
+  );
+  color: var(--text-primary);
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin: 0.8rem 0;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.settings-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* Input Styles */
+.settings-input {
+  padding: 1rem 1.5rem;
+  border-radius: 12px;
+  border: 1px solid rgba(74, 144, 226, 0.3);
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--text-primary);
+  font-size: 1rem;
+  width: 100%;
+  margin: 0.8rem 0;
+  transition: all 0.3s ease;
+}
+
+.settings-input:focus {
+  outline: none;
+  border-color: var(--accent-primary);
+  box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.2);
+}
+
+/* Select Styles */
+.settings-select {
+  padding: 1rem 1.5rem;
+  border-radius: 12px;
+  border: 1px solid rgba(74, 144, 226, 0.3);
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--text-primary);
+  font-size: 1rem;
+  width: 100%;
+  margin: 0.8rem 0;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+/* Toggle Switch */
+.settings-toggle {
+  padding: 1rem;
+  margin: 0.8rem 0;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+/* Form Groups */
+.settings-form-group {
+  margin: 1.5rem 0;
+  padding: 1.2rem;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 16px;
+}
+
+.settings-form-group label {
+  display: block;
+  margin-bottom: 0.8rem;
+  color: var(--text-primary);
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+/* Action Buttons */
+.settings-action-btn {
+  padding: 0.8rem 1.6rem;
+  border-radius: 25px;
+  border: none;
+  background: linear-gradient(145deg, 
+    var(--accent-blue),
+    var(--accent-secondary)
+  );
+  color: white;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0.8rem 0;
+}
+
+.settings-action-btn svg {
+  font-size: 1.1rem;
+}
+
+.settings-action-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* Save Button */
+.settings-save-btn {
+  padding: 1rem 2rem;
+  border-radius: 12px;
+  border: none;
+  background: linear-gradient(145deg, #4CAF50, #45a049);
+  color: white;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin: 1.5rem 0;
+  width: 100%;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.settings-save-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* Cancel Button */
+.settings-cancel-btn {
+  padding: 1rem 2rem;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--text-primary);
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin: 1rem 0;
+  width: 100%;
+}
+
+.settings-cancel-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateY(-2px);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .settings-container {
+    padding: 1rem;
+  }
+  
+  .settings-section {
+    padding: 1.5rem;
+  }
+  
+  .settings-btn,
+  .settings-input,
+  .settings-select {
+    padding: 0.8rem 1.2rem;
+  }
+  
+  .settings-action-btn {
+    padding: 0.7rem 1.4rem;
+  }
+}

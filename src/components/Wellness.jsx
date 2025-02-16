@@ -10,7 +10,15 @@ import {
   FaPalette,
   FaMicrophone,
   FaChessKnight,
-  FaClock
+  FaClock,
+  FaUserCircle,
+  FaUserAlt,
+  FaUserNinja,
+  FaUserSecret,
+  FaUserTie,
+  FaUserMd,
+  FaUserGraduate,
+  FaUserCog
 } from 'react-icons/fa';
 import FocusTimer from './FocusTimer';
 
@@ -91,7 +99,7 @@ const Wellness = () => {
       name: "Michael Phelps",
       achievement: "Olympic Swimmer",
       quote: "ADHD can be a great gift. It's something that I've learned to live with and turn into a strength.",
-      image: "phelps.jpg",
+      avatar: <FaUserGraduate className="avatar-icon" />,
       icon: <FaUserAstronaut />,
       tips: ["Found focus in swimming", "Structured routine", "Channeled energy into sport"]
     },
@@ -101,7 +109,7 @@ const Wellness = () => {
       name: "Emma Watson",
       achievement: "Actress & Activist",
       quote: "I've learned that my ADHD doesn't define me. It's just part of who I am.",
-      image: "watson.jpg",
+      avatar: <FaUserSecret className="avatar-icon" />,
       icon: <FaPalette />,
       tips: ["Uses creative outlets", "Embraces uniqueness", "Practices mindfulness"]
     },
@@ -111,7 +119,7 @@ const Wellness = () => {
       name: "Richard Branson",
       achievement: "Virgin Group Founder",
       quote: "ADHD can be a superpower if you learn how to harness it.",
-      image: "branson.jpg",
+      avatar: <FaUserTie className="avatar-icon" />,
       icon: <FaLightbulb />,
       tips: ["Lists and delegation", "Focuses on strengths", "Embraces different thinking"]
     }
@@ -159,6 +167,56 @@ const Wellness = () => {
     return `${mins}:${secs.toString().padStart(2, '0')}`
   }
 
+  // Add an array of available avatars
+  const avatarOptions = [
+    {
+      icon: FaUserNinja,
+      label: 'Ninja'
+    },
+    {
+      icon: FaUserAstronaut,
+      label: 'Astronaut'
+    },
+    {
+      icon: FaUserSecret,
+      label: 'Secret Agent'
+    },
+    {
+      icon: FaUserTie,
+      label: 'Professional'
+    },
+    {
+      icon: FaUserMd,
+      label: 'Doctor'
+    },
+    {
+      icon: FaUserGraduate,
+      label: 'Graduate'
+    },
+    {
+      icon: FaUserCog,
+      label: 'Engineer'
+    },
+    {
+      icon: FaUserAlt,
+      label: 'Classic'
+    },
+    {
+      icon: FaUserCircle,
+      label: 'Circle'
+    }
+  ];
+
+  // Update the profile section to use the new avatars
+  const ProfileAvatar = ({ icon: Icon, selected, onClick }) => (
+    <div 
+      className={`profile-avatar ${selected ? 'selected' : ''}`}
+      onClick={onClick}
+    >
+      <Icon />
+    </div>
+  );
+
   return (
     <div className="wellness-container">
       <div className="wellness-grid">
@@ -192,7 +250,7 @@ const Wellness = () => {
             {inspirations.map(inspiration => (
               <div key={inspiration.id} className="inspiration-card">
                 <div className="card-header">
-                  {inspiration.icon}
+                  {inspiration.avatar}
                   <h3>{inspiration.name}</h3>
                   <p className="achievement">{inspiration.achievement}</p>
                 </div>

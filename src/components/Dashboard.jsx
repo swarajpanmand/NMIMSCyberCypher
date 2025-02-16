@@ -175,46 +175,56 @@ const Dashboard = () => {
 
   const achievements = [
     {
-      title: "Lessons Completed",
-      current: 24,
-      total: 50,
-      icon: FaGraduationCap,
-      color: "#4CAF50"
+      id: 1,
+      title: "First Steps",
+      description: "Complete your first coding challenge",
+      progress: 100,
+      icon: <FaTrophy />,
+      completed: true,
+      color: "#FFD700",
+      position: 'left'
     },
     {
-      title: "Daily Streak",
-      current: 7,
-      total: 30,
-      icon: FaFire,
-      color: "#FF5722"
+      id: 2,
+      title: "Quick Learner",
+      description: "Complete 5 challenges in one day",
+      progress: 60,
+      icon: <FaStar />,
+      completed: false,
+      color: "#3498db",
+      position: 'right'
     },
     {
-      title: "Perfect Scores",
-      current: 12,
-      total: 20,
-      icon: FaStar,
-      color: "#FFC107"
+      id: 3,
+      title: "Problem Solver",
+      description: "Solve a medium difficulty challenge",
+      progress: 30,
+      icon: <FaMedal />,
+      completed: false,
+      color: "#2ecc71",
+      position: 'left'
     },
     {
-      title: "Time Spent",
-      current: 45,
-      total: 100,
-      icon: FaStopwatch,
-      color: "#2196F3"
+      id: 4,
+      title: "Code Master",
+      description: "Complete all basic challenges",
+      progress: 0,
+      icon: <FaCrown />,
+      completed: false,
+      color: "#9b59b6",
+      locked: true,
+      position: 'right'
     },
     {
-      title: "XP Earned",
-      current: 2500,
-      total: 5000,
-      icon: FaBolt,
-      color: "#9C27B0"
-    },
-    {
-      title: "Skills Mastered",
-      current: 3,
-      total: 10,
-      icon: FaBrain,
-      color: "#E91E63"
+      id: 5,
+      title: "Algorithm Ace",
+      description: "Solve an advanced algorithm",
+      progress: 0,
+      icon: <FaGem />,
+      completed: false,
+      color: "#e74c3c",
+      locked: true,
+      position: 'left'
     }
   ];
 
@@ -244,13 +254,48 @@ const Dashboard = () => {
             </div>
           </div>
           <div className="achievements-section">
-            <h3>Your Achievements</h3>
-            <div className="achievements-list">
+            <h2>Achievement Roadmap</h2>
+            <div className="achievements-roadmap">
+              <div className="rope-path"></div>
               {achievements.map((achievement, index) => (
-                <AchievementProgress
-                  key={index}
-                  {...achievement}
-                />
+                <div 
+                  key={achievement.id} 
+                  className={`achievement-item ${achievement.locked ? 'locked' : ''} 
+                             ${achievement.completed ? 'completed' : ''} 
+                             ${achievement.position}`}
+                >
+                  <div className="roadmap-marker"></div>
+                  <div className="achievement-header">
+                    <div 
+                      className="achievement-icon"
+                      style={{ 
+                        backgroundColor: `${achievement.color}20`,
+                        color: achievement.color 
+                      }}
+                    >
+                      {achievement.locked ? <FaLock /> : achievement.icon}
+                    </div>
+                    <div className="achievement-info">
+                      <h4>{achievement.title}</h4>
+                      <span>{achievement.description}</span>
+                    </div>
+                    {achievement.completed && (
+                      <div className="completion-badge">
+                        <FaCheck />
+                      </div>
+                    )}
+                  </div>
+                  <div className="progress-container">
+                    <div 
+                      className="progress-bar"
+                      style={{ 
+                        width: `${achievement.progress}%`,
+                        backgroundColor: achievement.color 
+                      }}
+                    />
+                    <span className="progress-text">{achievement.progress}%</span>
+                  </div>
+                </div>
               ))}
             </div>
           </div>

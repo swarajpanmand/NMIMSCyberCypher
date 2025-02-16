@@ -208,4 +208,213 @@
     flex-wrap: wrap;
     justify-content: center;
   }
+}
+
+/* Compact version for settings */
+.avatar-selection-compact {
+  background: var(--secondary-bg);
+  padding: 1rem;
+  border-radius: 12px;
+  margin-bottom: 1.5rem;
+}
+
+.avatar-grid-compact {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(50px, 1fr));
+  gap: 0.8rem;
+  margin-top: 0.8rem;
+}
+
+.avatar-option-compact {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  cursor: pointer;
+  background: linear-gradient(145deg, 
+    rgba(255, 255, 255, 0.1),
+    rgba(255, 255, 255, 0.05)
+  );
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.avatar-icon-compact {
+  font-size: 1.5rem;
+  color: var(--text-primary);
+  transition: all 0.3s ease;
+}
+
+.avatar-option-compact:hover {
+  transform: translateY(-2px) scale(1.05);
+  background: linear-gradient(145deg,
+    var(--accent-secondary),
+    var(--accent-primary)
+  );
+}
+
+.avatar-option-compact:hover .avatar-icon-compact {
+  color: white;
+}
+
+.avatar-option-compact.selected {
+  background: linear-gradient(145deg,
+    var(--accent-primary),
+    var(--accent-secondary)
+  );
+}
+
+.avatar-option-compact.selected .avatar-icon-compact {
+  color: white;
+}
+
+/* Large Profile Avatar */
+.profile-avatar-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.profile-avatar-large {
+  position: relative;
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  background: linear-gradient(145deg, 
+    rgba(255, 255, 255, 0.1),
+    rgba(255, 255, 255, 0.05)
+  );
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+}
+
+.profile-avatar-large svg {
+  font-size: 4.5rem;
+  transition: all 0.3s ease;
+}
+
+.profile-avatar-large:hover {
+  transform: scale(1.05);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
+}
+
+.change-avatar-btn {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  background: var(--accent-primary);
+  border: 3px solid var(--secondary-bg);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.change-avatar-btn:hover {
+  transform: scale(1.1);
+  background: var(--accent-secondary);
+}
+
+.change-avatar-btn svg {
+  font-size: 1.3rem;
+}
+
+/* Avatar Selection Grid */
+.avatar-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  padding: 1.5rem;
+}
+
+.avatar-option {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1.2rem;
+  border-radius: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.avatar-option .avatar-icon {
+  font-size: 3.5rem;
+  margin-bottom: 0.8rem;
+  transition: all 0.3s ease;
+}
+
+.avatar-option:hover {
+  transform: translateY(-5px);
+  background: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+}
+
+.avatar-option.selected {
+  background: linear-gradient(145deg,
+    var(--accent-primary),
+    var(--accent-secondary)
+  );
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+}
+
+.avatar-option.selected .avatar-icon {
+  transform: scale(1.1);
+}
+
+.avatar-option span {
+  font-size: 1rem;
+  color: var(--text-primary);
+  margin-top: 0.5rem;
+}
+
+/* Avatar Selection Modal */
+.avatar-selection-modal {
+  background: var(--secondary-bg);
+  padding: 2rem;
+  border-radius: 20px;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(74, 144, 226, 0.2);
+  margin-top: 2rem;
+}
+
+.avatar-selection-modal h3 {
+  font-size: 1.5rem;
+  color: var(--text-primary);
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .profile-avatar-large {
+    width: 120px;
+    height: 120px;
+  }
+
+  .profile-avatar-large svg {
+    font-size: 3.5rem;
+  }
+
+  .avatar-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+
+  .avatar-option .avatar-icon {
+    font-size: 3rem;
+  }
 } 

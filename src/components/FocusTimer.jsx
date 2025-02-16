@@ -81,7 +81,7 @@ function FocusTimer() {
           </button>
         </div>
 
-        <div className="preset-times">
+        {/* <div className="preset-times">
           {presetTimes.map((preset, index) => (
             <button 
               key={index}
@@ -91,7 +91,7 @@ function FocusTimer() {
               {preset.label}
             </button>
           ))}
-        </div>
+        </div> */}
       </div>
 
       <div className="focus-aids">

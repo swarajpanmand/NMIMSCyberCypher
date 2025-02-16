@@ -1,9 +1,60 @@
 import { useState } from 'react'
-import { FaUser, FaCog, FaBrain, FaClock, FaTrophy, FaChartLine, FaCalendarAlt, FaLightbulb, FaStar, FaMedal, FaHeart } from 'react-icons/fa';
+import { FaUser, FaCog, FaBrain, FaClock, FaTrophy, FaChartLine, FaCalendarAlt, FaLightbulb, FaStar, FaMedal, FaHeart, FaUserNinja, FaUserAstronaut, FaUserSecret, FaUserTie, FaUserMd, FaUserGraduate, FaUserCog, FaUserAlt, FaUserCircle, FaEdit, FaSave, FaCamera } from 'react-icons/fa';
 import { GiBrain, GiStairsGoal } from 'react-icons/gi';
+
+const avatarOptions = [
+  {
+    icon: FaUserNinja,
+    label: 'Ninja',
+    color: '#e74c3c'
+  },
+  {
+    icon: FaUserAstronaut,
+    label: 'Astronaut',
+    color: '#3498db'
+  },
+  {
+    icon: FaUserSecret,
+    label: 'Secret Agent',
+    color: '#2c3e50'
+  },
+  {
+    icon: FaUserTie,
+    label: 'Professional',
+    color: '#34495e'
+  },
+  {
+    icon: FaUserMd,
+    label: 'Doctor',
+    color: '#27ae60'
+  },
+  {
+    icon: FaUserGraduate,
+    label: 'Graduate',
+    color: '#8e44ad'
+  },
+  {
+    icon: FaUserCog,
+    label: 'Engineer',
+    color: '#f39c12'
+  },
+  {
+    icon: FaUserAlt,
+    label: 'Classic',
+    color: '#7f8c8d'
+  },
+  {
+    icon: FaUserCircle,
+    label: 'Circle',
+    color: '#16a085'
+  }
+];
 
 const Profile = () => {
   const [activeTab, setActiveTab] = useState('overview');
+  const [selectedAvatar, setSelectedAvatar] = useState(avatarOptions[0]);
+  const [isEditingProfile, setIsEditingProfile] = useState(false);
+  const [showAvatarSelection, setShowAvatarSelection] = useState(false);
 
   const userStats = {
     focusTime: "28h 45m",
@@ -46,45 +97,47 @@ const Profile = () => {
     readingWriting: 45
   };
 
+  const handleAvatarSelect = (avatar) => {
+    setSelectedAvatar(avatar);
+    setShowAvatarSelection(false);
+  };
+
   return (
     <div className="profile-container">
-      {/* Profile Header */}
+      {/* Profile Header with Avatar */}
       <div className="profile-header">
-        <div className="profile-avatar">
-          <img src="/avatar-placeholder.png" alt="Profile" />
-          <div className="profile-status">
-            <span className="status-dot"></span>
-            Level 8
+        <div className="profile-avatar-container">
+          <div className="profile-avatar-large">
+            {selectedAvatar && <selectedAvatar.icon style={{ color: selectedAvatar.color }} />}
+            <button 
+              className="change-avatar-btn"
+              onClick={() => setShowAvatarSelection(!showAvatarSelection)}
+            >
+              <FaCamera />
+            </button>
           </div>
-        </div>
-        <div className="profile-info">
-          <h2>Sarah Johnson</h2>
-          <p className="profile-bio">Embracing ADHD and turning challenges into strengths 💪</p>
-          <div className="profile-stats">
-            <div className="stat-item">
-              <FaClock className="stat-icon" />
-              <div className="stat-details">
-                <span className="stat-value">{userStats.focusTime}</span>
-                <span className="stat-label">Focus Time</span>
-              </div>
-            </div>
-            <div className="stat-item">
-              <FaChartLine className="stat-icon" />
-              <div className="stat-details">
-                <span className="stat-value">{userStats.completedTasks}</span>
-                <span className="stat-label">Tasks Done</span>
-              </div>
-            </div>
-            <div className="stat-item">
-              <FaCalendarAlt className="stat-icon" />
-              <div className="stat-details">
-                <span className="stat-value">{userStats.streakDays}</span>
-                <span className="stat-label">Day Streak</span>
-              </div>
-            </div>
-          </div>
+          <h2>Your Profile</h2>
         </div>
       </div>
+
+      {/* Avatar Selection Modal */}
+      {showAvatarSelection && (
+        <div className="avatar-selection-modal">
+          <h3>Choose Your Avatar</h3>
+          <div className="avatar-grid">
+            {avatarOptions.map((avatar, index) => (
+              <div 
+                key={index}
+                className={`avatar-option ${selectedAvatar === avatar ? 'selected' : ''}`}
+                onClick={() => handleAvatarSelect(avatar)}
+              >
+                <avatar.icon className="avatar-icon" style={{ color: avatar.color }} />
+                <span>{avatar.label}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
 
       {/* Profile Navigation */}
       <div className="profile-nav">

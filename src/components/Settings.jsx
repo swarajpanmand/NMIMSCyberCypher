@@ -6,8 +6,67 @@ import {
   FaPalette, 
   FaUniversalAccess,
   FaLink,
-  FaUserCircle
+  FaUserCircle,
+  FaUserNinja,
+  FaUserAstronaut,
+  FaUserSecret,
+  FaUserTie,
+  FaUserMd,
+  FaUserGraduate,
+  FaUserCog,
+  FaUserAlt,
+  FaCamera,
+  FaSave,
+  FaEdit
 } from 'react-icons/fa';
+
+const avatarOptions = [
+  {
+    icon: FaUserNinja,
+    label: 'Ninja',
+    color: '#e74c3c'
+  },
+  {
+    icon: FaUserAstronaut,
+    label: 'Astronaut',
+    color: '#3498db'
+  },
+  {
+    icon: FaUserSecret,
+    label: 'Secret Agent',
+    color: '#2c3e50'
+  },
+  {
+    icon: FaUserTie,
+    label: 'Professional',
+    color: '#34495e'
+  },
+  {
+    icon: FaUserMd,
+    label: 'Doctor',
+    color: '#27ae60'
+  },
+  {
+    icon: FaUserGraduate,
+    label: 'Graduate',
+    color: '#8e44ad'
+  },
+  {
+    icon: FaUserCog,
+    label: 'Engineer',
+    color: '#f39c12'
+  },
+  {
+    icon: FaUserAlt,
+    label: 'Classic',
+    color: '#7f8c8d'
+  },
+  {
+    icon: FaUserCircle,
+    label: 'Circle',
+    color: '#16a085'
+  }
+];
 
 const Settings = () => {
   const [activeTab, setActiveTab] = useState('profile')
@@ -42,6 +101,9 @@ const Settings = () => {
     contentFilter: 'moderate',
     parentEmail: ''
   })
+
+  const [selectedAvatar, setSelectedAvatar] = useState(avatarOptions[0]);
+  const [showAvatarSelection, setShowAvatarSelection] = useState(false);
 
   const handleSettingChange = (category, setting, value) => {
     setSettings(prev => ({
@@ -84,10 +146,42 @@ const Settings = () => {
           <div className="settings-section">
             <h2>Profile Settings</h2>
             
-            <div className="setting-group profile-avatar">
-              <FaUserCircle className="avatar-icon" />
-              <button className="change-avatar-btn">Change Avatar</button>
+            <div className="current-avatar-container">
+              <div className="current-avatar-large">
+                {selectedAvatar && <selectedAvatar.icon style={{ color: selectedAvatar.color }} />}
+                <button 
+                  className="change-avatar-btn"
+                  onClick={() => setShowAvatarSelection(!showAvatarSelection)}
+                >
+                  <FaCamera />
+                </button>
+              </div>
+              <span className="avatar-label">{selectedAvatar.label}</span>
             </div>
+
+            {showAvatarSelection && (
+              <div className="avatar-selection-panel">
+                <h3>Choose Your Avatar</h3>
+                <div className="settings-avatar-grid">
+                  {avatarOptions.map((avatar, index) => (
+                    <div 
+                      key={index}
+                      className={`settings-avatar-option ${selectedAvatar === avatar ? 'selected' : ''}`}
+                      onClick={() => {
+                        setSelectedAvatar(avatar);
+                        setShowAvatarSelection(false);
+                      }}
+                    >
+                      <avatar.icon 
+                        className="settings-avatar-icon" 
+                        style={{ color: avatar.color }} 
+                      />
+                      <span>{avatar.label}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
             
             <div className="setting-group">
               <h3>Email Address</h3>
